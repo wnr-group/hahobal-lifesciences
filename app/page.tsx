@@ -21,7 +21,7 @@ export default function HahobalLandingPage() {
               'url("https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80")'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-white via-white/95 to-transparent" />
 
         <div className="relative z-10 max-w-2xl">
           <div className="inline-block bg-[#e0f5f3] text-[#0a5c57] text-xs font-bold px-3 py-1 mb-6 rounded-sm uppercase tracking-wider">
@@ -55,7 +55,7 @@ export default function HahobalLandingPage() {
             </h2>
             <div className="space-y-8 md:space-y-10">
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded flex items-center justify-center">
+                <div className="shrink-0 w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded flex items-center justify-center">
                   <Search className="w-6 h-6" />
                 </div>
                 <div>
@@ -70,7 +70,7 @@ export default function HahobalLandingPage() {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded flex items-center justify-center">
+                <div className="shrink-0 w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded flex items-center justify-center">
                   <Users className="w-6 h-6" />
                 </div>
                 <div>
@@ -84,7 +84,7 @@ export default function HahobalLandingPage() {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded flex items-center justify-center">
+                <div className="shrink-0 w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded flex items-center justify-center">
                   <Globe className="w-6 h-6" />
                 </div>
                 <div>
@@ -103,9 +103,9 @@ export default function HahobalLandingPage() {
             <img
               src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80"
               alt="Scientific Research"
-              className="rounded shadow-xl w-full h-[300px] md:h-[400px] object-cover"
+              className="rounded shadow-xl w-full h-75 md:h-100 object-cover"
             />
-            <div className="absolute -bottom-6 -left-0 md:-left-6 bg-white p-4 md:p-6 shadow-lg rounded max-w-[90%] md:max-w-sm border-l-4 border-[#0a5c57] mx-6 md:mx-0">
+            <div className="absolute -bottom-6 left-0 md:-left-6 bg-white p-4 md:p-6 shadow-lg rounded max-w-[90%] md:max-w-sm border-l-4 border-[#0a5c57] mx-6 md:mx-0">
               <p className="text-gray-600 italic text-sm mb-4">
                 "Our commitment is to eliminate the 'one size fits all' approach
                 in oncology treatment."
@@ -139,7 +139,7 @@ export default function HahobalLandingPage() {
             <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">
               Solid Tumors
             </h3>
-            <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed grow">
               Developing small molecule inhibitors targeting specific genomic
               alterations in lung, breast, and colorectal cancers.
             </p>
@@ -160,7 +160,7 @@ export default function HahobalLandingPage() {
             <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">
               Hematology
             </h3>
-            <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed grow">
               Advancing immunotherapies for leukemia and lymphoma that harness
               the body's own immune system to fight malignant cells.
             </p>
@@ -181,7 +181,7 @@ export default function HahobalLandingPage() {
             <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">
               Rare Cancers
             </h3>
-            <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed grow">
               Dedicated research tracks for orphan oncology indications that are
               often overlooked by larger pharmaceutical firms.
             </p>
