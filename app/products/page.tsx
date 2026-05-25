@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -29,6 +30,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-800 selection:bg-[#0a5c57] selection:text-white overflow-hidden pb-20">
+      
       {/* 1. FULL-WIDTH HERO SECTION (Dark Theme) */}
       <motion.section
         className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 px-6 lg:px-20 text-white overflow-hidden bg-[#052b29]"
@@ -36,17 +38,17 @@ export default function ProductsPage() {
         animate="visible"
         variants={fadeUpVariant}
       >
-        {/* Background Image (Vials) fading into the right side */}
+        {/* Background Image (Vials) aligned to the right without heavy blending */}
         <div
-          className="absolute right-0 top-0 w-full lg:w-2/3 h-full bg-cover bg-top-left opacity-50 mix-blend-luminosity"
+          className="absolute right-0 top-0 w-full lg:w-[65%] h-full bg-cover bg-center opacity-80"
           style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80")'
+            backgroundImage: 'url("product-hero-image.png")'
           }}
         />
-        {/* Gradients to seamlessly blend the image into the dark background */}
-        <div className="absolute inset-0 bg-linear-to-r from-[#052b29] via-[#052b29]/90 to-transparent z-10" />
-        <div className="absolute inset-0 bg-linear-to-t from-[#052b29] via-transparent to-transparent z-10" />
+        
+        {/* Gradients: Solid dark on the left fading to transparent on the right */}
+        <div className="absolute inset-0 bg-linear-to-r from-[#052b29] via-[#052b29]/95 to-transparent z-10" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#052b29]/60 via-transparent to-transparent z-10" />
 
         {/* Hero Content */}
         <div className="relative z-20 max-w-350 mx-auto flex flex-col lg:flex-row items-center">
@@ -318,16 +320,16 @@ export default function ProductsPage() {
         </div>
 
         <div className="lg:w-1/2 w-full relative group overflow-hidden rounded-sm shadow-xl border border-gray-100">
-          {/* Free, working Unsplash Image */}
+          {/* Replaced broken webpage link with a direct JPG link */}
           <img
-            src="https://unsplash.com/photos/contemporary-chemist-or-researcher-in-gloves-mixing-two-liquid-substances-while-dropping-one-of-them-into-flasks-r148ZfRb6uU"
+            src="product-image.png"
             alt="Scientist in Laboratory"
-            className="w-full h-[300px] md:h-[400px] lg:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-75 md:h-100 lg:h-112.5 object-cover transition-transform duration-700 group-hover:scale-105"
           />
 
           {/* Overlays */}
           <div className="absolute inset-0 bg-[#0a5c57]/10 mix-blend-color pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#052b29]/20 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#052b29]/20 to-transparent pointer-events-none" />
         </div>
       </motion.section>
     </div>
