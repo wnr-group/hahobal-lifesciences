@@ -49,7 +49,7 @@ export default function AboutUsPage() {
             Leading Innovation
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-serif font-bold text-white leading-[1.1] tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold text-white leading-[1.1] tracking-tight">
             Engineering a Healthier Tomorrow
           </h1>
         </div>
@@ -67,7 +67,7 @@ export default function AboutUsPage() {
           <div className="flex justify-center mb-6">
             <Microscope className="w-8 h-8 text-[#0a5c57]" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-8 tracking-tight">
+          <h2 className="text-3xl md:text-4xl  font-bold text-gray-900 mb-8 tracking-tight">
             Who We Are
           </h2>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-12">
@@ -102,7 +102,7 @@ export default function AboutUsPage() {
         variants={fadeUpVariant}
       >
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
             Our Core Values
           </h2>
           <div className="w-16 h-0.75 bg-[#0a5c57] mx-auto"></div>
@@ -114,7 +114,7 @@ export default function AboutUsPage() {
           {/* Card 1 */}
           <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
             <ShieldCheck className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
-            <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">Integrity</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Integrity</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Upholding the highest ethical standards in every clinical trial and corporate partnership.
             </p>
@@ -123,7 +123,7 @@ export default function AboutUsPage() {
           {/* Card 2 */}
           <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
             <Lightbulb className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
-            <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">Innovation</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Innovation</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Pushing the boundaries of molecular science to discover next-generation therapies.
             </p>
@@ -132,7 +132,7 @@ export default function AboutUsPage() {
           {/* Card 3 */}
           <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
             <Award className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
-            <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">Quality Excellence</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Quality Excellence</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Uncompromising rigor in manufacturing and quality control across our entire pipeline.
             </p>
@@ -141,7 +141,7 @@ export default function AboutUsPage() {
           {/* Card 4 */}
           <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
             <Heart className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
-            <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">Patient Commitment</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Patient Commitment</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Placing the well-being and outcomes of patients at the heart of our scientific journey.
             </p>
@@ -150,7 +150,7 @@ export default function AboutUsPage() {
           {/* Card 5 */}
           <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
             <FlaskConical className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
-            <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">Scientific Responsibility</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Scientific Responsibility</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Operating with evidence-based precision and accountability to the global community.
             </p>

@@ -1,12 +1,9 @@
 'use client';
-import  { useEffect, useRef, useState } from 'react';
+
+import { useEffect, useRef, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import {
   BadgeCheck,
-  ClipboardList,
-  GraduationCap,
-  Leaf,
-  Globe2,
   Wind,
   FlaskConical,
   Snowflake,
@@ -24,10 +21,9 @@ const fadeUpVariant: Variants = {
 };
 
 // --- Sub-Components ---
-
 const Hero = () => (
-  <section className="relative w-full min-h-137.5 flex items-center bg-cover bg-right md:bg-center" 
-    style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80")' }}
+  <section className="relative w-full min-h-[137.5px] flex items-center bg-cover bg-right md:bg-center" 
+    style={{ backgroundImage: 'url("manufacture-hero-image.png")' }}
   >
     <div className="absolute inset-0 bg-linear-to-r from-slate-900/90 via-slate-900/60 to-transparent z-0" />
     
@@ -62,7 +58,7 @@ const ManufacturingExcellence = () => (
   >
     <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-12 gap-4">
       <h2 className="text-3xl lg:text-4xl font-bold text-[#000d21]">Manufacturing Excellence</h2>
-      <div className=" items-center gap-2 bg-[#90f4e8] px-4 py-1.5 rounded-full inline-flex w-max">
+      <div className="items-center gap-2 bg-[#90f4e8] px-4 py-1.5 rounded-full inline-flex w-max">
         <BadgeCheck className="text-[#007169] w-4 h-4" />
         <span className="text-xs font-semibold text-[#007169] uppercase tracking-wide">WHO-GMP CERTIFIED</span>
       </div>
@@ -74,7 +70,7 @@ const ManufacturingExcellence = () => (
           <img 
             alt="Automated Sterile Formulation Cleanroom" 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-            src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&q=80"
+            src="manufacture-excellance-image.png"
           />
         </div>
         <h3 className="text-2xl font-bold text-[#000d21] mb-3 px-4">Automated Sterile Formulation</h3>
@@ -155,7 +151,7 @@ const QualityAssurance = () => (
         <img 
           alt="Laboratory Quality Control" 
           className="w-full h-100 object-cover group-hover:scale-105 transition-transform duration-700" 
-          src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80"
+          src="manufacture-quality-image.png"
         />
       </div>
     </div>
@@ -196,7 +192,6 @@ const ResearchPriorities = () => (
 
 // --- Complex Custom Canvas Component ---
 
-// 1. Explicitly type the Location Object
 interface MapLocation {
   id: string;
   lat: number;
@@ -218,6 +213,9 @@ const GlobalExpansionMap = () => {
   });
 
   useEffect(() => {
+    // 1. Declare the animationFrameId at the top of the useEffect block scope
+    let animationFrameId: number;
+
     const hasTopojson = () => 'topojson' in window;
 
     if (!hasTopojson()) {
@@ -230,8 +228,6 @@ const GlobalExpansionMap = () => {
       initializeMap();
     }
 
-    let animationFrameId: number;
-
     function initializeMap() {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -241,7 +237,6 @@ const GlobalExpansionMap = () => {
 
       let pathOpacity = 0;
       
-      // FIX 1: Explicitly type locations as any[] to stop strict object checking
       const locations: any[] = [
         { id: 'frankfurt', lat: 50.1, lon: 8.7, color: '#0f6e56', year: '2024', city: 'Frankfurt, Germany', milestone: 'EU Hub Activation', desc: 'Centralized logistics facility in Frankfurt for European distribution.', labelOffset: { x: 28, y: 18 } },
         { id: 'singapore', lat: 1.35, lon: 103.82, color: '#0f6e56', year: '2025', city: 'Singapore', milestone: 'APAC R&D Center', desc: 'New genomic sequencing laboratory opening in Singapore.', labelOffset: { x: 0, y: -45 } },
@@ -261,7 +256,6 @@ const GlobalExpansionMap = () => {
         try {
           const response = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
           const topoData = await response.json();
-          // FIX 2: Force TypeScript to ignore the window object shape
           worldData = (window as any).topojson.feature(topoData, (topoData as any).objects.countries);
         } catch(e) { 
           console.error("Map loading error", e); 
@@ -314,7 +308,6 @@ const GlobalExpansionMap = () => {
         ctx.font = 'bold 10px Inter, sans-serif';
         const textWidth = ctx.measureText(text).width;
         
-        // Safety check for offset to prevent undefined errors
         const safeOffset = offset || { x: 0, y: 0 };
         
         const rectX = x + safeOffset.x - (textWidth / 2) - paddingX;
@@ -395,6 +388,7 @@ const GlobalExpansionMap = () => {
           }
         });
 
+        // This will now work without throwing the ReferenceError
         animationFrameId = requestAnimationFrame(animate);
       }
       
@@ -406,7 +400,6 @@ const GlobalExpansionMap = () => {
         const my = e.clientY - rect.top;
         const w = rect.width; const h = rect.height;
 
-        // FIX 3: Explicitly type found as 'any' to completely bypass TS 'never' errors
         let found: any = null;
         
         locations.forEach(loc => {
@@ -437,7 +430,10 @@ const GlobalExpansionMap = () => {
       return () => {
         window.removeEventListener('resize', resize);
         canvas.removeEventListener('mousemove', handleMouseMove);
-        cancelAnimationFrame(animationFrameId);
+        // Safety check to ensure it's defined before cancelling
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
       };
     }
   }, []);

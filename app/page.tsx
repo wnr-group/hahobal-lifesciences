@@ -272,42 +272,6 @@ export default function HomePage() {
                 </div>
             </motion.section>
 
-            {/* 5. NEWSLETTER SECTION */}
-            <motion.section
-                className="py-12 px-6 lg:px-20 border-t border-gray-200 bg-[#f8fafc]"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{once: true, amount: 0.3}}
-                variants={fadeUpVariant}
-            >
-                <div className="max-w-350 mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="text-center md:text-left">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight">
-                            Stay Updated on Our Research
-                        </h3>
-                        <p className="text-gray-500 text-sm">
-                            Receive quarterly insights into clinical progress and pipeline breakthroughs.
-                        </p>
-                    </div>
-
-                    <div className="w-full md:w-auto grow max-w-md">
-                        <form className="flex flex-col sm:flex-row gap-2">
-                            <input
-                                type="email"
-                                placeholder="Email address"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-sm text-gray-800 bg-white placeholder:text-gray-400 focus:outline-none focus:border-[#0a5c57] transition-colors"
-                                required
-                            />
-                            <button
-                                type="submit"
-                                className="bg-[#0a5c57] hover:bg-[#073b37] text-white px-8 py-3 rounded-sm font-semibold transition-colors shrink-0 shadow-sm"
-                            >
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </motion.section>
         </div>
     );
 }
