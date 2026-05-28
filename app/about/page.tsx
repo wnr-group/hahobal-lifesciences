@@ -45,19 +45,15 @@ export default function AboutUsPage() {
         
         {/* Hero Content */}
         <div className="relative z-20 max-w-350 mx-auto text-center flex flex-col items-center justify-center">
-          <div className="inline-block text-white text-xs font-bold px-4 py-1.5 mb-6 uppercase tracking-[0.3em]">
-            Leading Innovation
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold text-white leading-[1.1] tracking-tight">
-            Engineering a Healthier Tomorrow
+          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold text-white leading-[1.1] tracking-tight mb-6">
+            Committed to Life.<br />Dedicated to Oncology.
           </h1>
         </div>
       </motion.section>
 
       {/* 2. WHO WE ARE SECTION */}
-      <motion.section 
-        className="py-20 md:py-28 px-6 lg:px-20 max-w-350 mx-auto"
+      <motion.section
+        className="pt-20 md:pt-28 pb-12 md:pb-16 px-6 lg:px-20 max-w-350 mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
@@ -71,31 +67,102 @@ export default function AboutUsPage() {
             Who We Are
           </h2>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-12">
-            Hahobal Lifesciences is a pioneering pharmaceutical organization dedicated to the relentless pursuit of breakthroughs in <span className="font-bold text-gray-900">oncology and specialty healthcare</span>. We combine clinical rigor with agile innovation to tackle the world's most challenging medical conditions.
+            Hahobal Lifesciences is a fast-growing pharmaceutical company focused exclusively on oncology and specialty healthcare products. Built on the foundation of quality, ethics, and innovation, we strive to deliver world-class cancer therapies that improve patient outcomes and support healthcare professionals globally.
+          </p>
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-12">
+            With a strong commitment to research-driven manufacturing and regulatory excellence, we aim to become a trusted partner in oncology healthcare.
           </p>
 
-          {/* Vision & Mission Cards */}
-          <div className="grid md:grid-cols-2 gap-8 text-left">
-            <div className="bg-white p-10 rounded-sm shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="text-[11px] font-bold text-[#0a5c57] uppercase tracking-[0.2em] mb-4">Our Vision</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                To be recognized as a globally respected oncology pharmaceutical company, setting new standards in therapeutic efficacy.
-              </p>
-            </div>
-            
-            <div className="bg-white p-10 rounded-sm shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="text-[11px] font-bold text-[#0a5c57] uppercase tracking-[0.2em] mb-4">Our Mission</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Ensuring accessibility to high-quality medicines while providing steadfast support to medical professionals worldwide.
-              </p>
-            </div>
+          {/* Vision Card - Full Width */}
+          <div className="bg-white p-10 rounded-sm shadow-sm border border-gray-100 hover:shadow-md transition-shadow text-center mb-8">
+            <h3 className="text-[11px] font-bold text-[#0a5c57] uppercase tracking-[0.2em] mb-4">Our Vision</h3>
+            <p className="text-gray-600 text-base leading-relaxed max-w-3xl mx-auto">
+              To become a globally respected oncology pharmaceutical company delivering innovative and affordable cancer care solutions.
+            </p>
           </div>
+
+          {/* Mission Section */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.3
+                }
+              }
+            }}
+          >
+            <h3 className="text-[11px] font-bold text-[#0a5c57] uppercase tracking-[0.2em] mb-6 text-center">Our Mission</h3>
+            <div className="bg-white p-12 rounded-sm shadow-sm border border-gray-100">
+              <motion.div
+                className="flex items-start gap-4 mb-8"
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+                }}
+              >
+                <div className="flex-shrink-0 w-8 h-8 bg-[#e0f5f3] rounded-full flex items-center justify-center">
+                  <span className="text-[#0a5c57] font-bold text-sm">1</span>
+                </div>
+                <p className="text-gray-700 text-base leading-relaxed">
+                  To provide high-quality oncology medicines with international standards
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="flex items-start gap-4 mb-8"
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+                }}
+              >
+                <div className="flex-shrink-0 w-8 h-8 bg-[#e0f5f3] rounded-full flex items-center justify-center">
+                  <span className="text-[#0a5c57] font-bold text-sm">2</span>
+                </div>
+                <p className="text-gray-700 text-base leading-relaxed">
+                  To improve accessibility of life-saving therapies
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="flex items-start gap-4 mb-8"
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+                }}
+              >
+                <div className="flex-shrink-0 w-8 h-8 bg-[#e0f5f3] rounded-full flex items-center justify-center">
+                  <span className="text-[#0a5c57] font-bold text-sm">3</span>
+                </div>
+                <p className="text-gray-700 text-base leading-relaxed">
+                  To support healthcare professionals with reliable treatment solutions
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="flex items-start gap-4"
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+                }}
+              >
+                <div className="flex-shrink-0 w-8 h-8 bg-[#e0f5f3] rounded-full flex items-center justify-center">
+                  <span className="text-[#0a5c57] font-bold text-sm">4</span>
+                </div>
+                <p className="text-gray-700 text-base leading-relaxed">
+                  To contribute toward a healthier and cancer-aware society
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 
       {/* 3. OUR CORE VALUES SECTION (5-Column Grid) */}
-      <motion.section 
-        className="py-16 md:py-24 px-6 lg:px-20 max-w-350 mx-auto border-t border-gray-200/60"
+      <motion.section
+        className="py-12 md:py-16 px-6 lg:px-20 max-w-350 mx-auto border-t border-gray-200/60"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}

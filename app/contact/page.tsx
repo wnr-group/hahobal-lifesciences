@@ -2,14 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import { 
-  MapPin, 
-  Building2, 
-  Phone, 
-  Map, 
-  ArrowUpRight, 
-  Clock, 
-  Navigation,
+import {
+  MapPin,
+  Building2,
+  Phone,
+  Map,
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
@@ -75,8 +72,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-125 lg:min-h-150 flex items-center bg-white mb-20 overflow-hidden group">
-      
+    <section className="relative min-h-125 lg:min-h-125 xl:min-h-137.5 flex items-center bg-white mb-20 overflow-hidden group">
+
       {/* Animated Background Images */}
       <AnimatePresence initial={false}>
         <motion.div
@@ -85,9 +82,15 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-          className="absolute inset-0 bg-cover bg-right md:bg-center bg-no-repeat z-0"
-          style={{ backgroundImage: `url("${slides[currentSlide].image}")` }}
-        />
+          className="absolute inset-0 z-0"
+        >
+          <img
+            src={slides[currentSlide].image}
+            alt={slides[currentSlide].title}
+            className="w-full h-full object-cover object-right md:object-center"
+            style={{ imageRendering: 'auto' }}
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Gradient Overlay for Text Readability */}
@@ -162,78 +165,72 @@ const ContactForm = () => (
     variants={fadeUpVariant}
   >
     <h3 className="text-3xl font-bold text-[#000d21] mb-6">General Inquiry</h3>
-    <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+    <form className="space-y-6" onSubmit={(e) => e.preventDefault()} aria-label="Contact inquiry form">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-[#44474d]">Full Name</label>
-          <input 
-            type="text" 
-            placeholder="John Doe" 
-            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-1 focus:ring-[#006a63] transition-all"
+          <label htmlFor="contact-name" className="text-sm font-medium text-[#44474d]">Full Name</label>
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            placeholder="John Doe"
+            required
+            aria-required="true"
+            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-[#44474d]">Email Address</label>
-          <input 
-            type="email" 
-            placeholder="john@example.com" 
-            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-1 focus:ring-[#006a63] transition-all"
+          <label htmlFor="contact-email" className="text-sm font-medium text-[#44474d]">Email Address</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            placeholder="john@example.com"
+            required
+            aria-required="true"
+            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all"
           />
         </div>
       </div>
-      
+
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-[#44474d]">Inquiry Type</label>
-        <select className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-1 focus:ring-[#006a63] bg-white transition-all">
-          <option>Clinical Partnership</option>
-          <option>Investor Relations</option>
-          <option>Medical Affairs</option>
-          <option>Career Information</option>
+        <label htmlFor="contact-inquiry-type" className="text-sm font-medium text-[#44474d]">Inquiry Type</label>
+        <select
+          id="contact-inquiry-type"
+          name="inquiryType"
+          required
+          aria-required="true"
+          className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] bg-white transition-all"
+        >
+          <option value="">Select inquiry type</option>
+          <option value="clinical">Clinical Partnership</option>
+          <option value="investor">Investor Relations</option>
+          <option value="medical">Medical Affairs</option>
+          <option value="career">Career Information</option>
         </select>
       </div>
-      
+
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-[#44474d]">Message</label>
-        <textarea 
-          rows={4} 
-          placeholder="How can we assist you today?" 
-          className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-1 focus:ring-[#006a63] transition-all resize-none"
+        <label htmlFor="contact-message" className="text-sm font-medium text-[#44474d]">Message</label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows={4}
+          placeholder="How can we assist you today?"
+          required
+          aria-required="true"
+          className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all resize-none"
         />
       </div>
-      
-      <button 
-        type="submit" 
-        className="bg-[#006a63] text-white px-8 py-3 rounded text-sm font-medium hover:bg-[#00504a] transform hover:-translate-y-0.5 transition-all duration-300 w-full md:w-auto shadow-sm hover:shadow-md"
+
+      <button
+        type="submit"
+        aria-label="Submit contact inquiry form"
+        className="bg-[#006a63] text-white px-8 py-3 rounded text-sm font-medium hover:bg-[#00504a] focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:ring-offset-2 transform hover:-translate-y-0.5 transition-all duration-300 w-full md:w-auto shadow-sm hover:shadow-md"
       >
         Submit Inquiry
       </button>
     </form>
-  </motion.div>
-);
-
-const LocalizedMap = () => (
-  <motion.div 
-    className="relative h-64 rounded-lg overflow-hidden border border-[#c4c6ce]"
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.15 }}
-    variants={fadeUpVariant}
-    transition={{ delay: 0.2 }}
-  >
-    {/* Monochrome Styled Map Background */}
-    <img 
-      alt="Monochrome map of Cambridge Medical District" 
-      className="w-full h-full object-cover grayscale brightness-90 contrast-125" 
-      src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80"
-    />
-    
-    {/* Prominent Teal Pin Marker */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-      <MapPin className="w-10 h-10 text-[#0D9488] drop-shadow-md animate-bounce" fill="currentColor" />
-      <div className="bg-[#000d21] text-white text-[10px] px-2 py-1 rounded shadow-lg mt-1 font-bold whitespace-nowrap">
-        Innovation Park, Suite 400
-      </div>
-    </div>
   </motion.div>
 );
 
@@ -246,165 +243,52 @@ const CorporateOffices = () => (
     variants={fadeUpVariant}
     transition={{ delay: 0.1 }}
   >
-    <h3 className="text-3xl font-bold text-[#000d21] mb-8">Corporate Offices</h3>
-    
+    <h3 className="text-3xl font-bold text-[#000d21] mb-8">Corporate Office</h3>
+
     <div className="space-y-8 grow">
-      {/* Global HQ */}
+      {/* Corporate Office */}
       <div className="flex gap-4 group">
         <MapPin className="text-[#006a63] w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110" />
         <div>
-          <h4 className="text-xl font-bold text-[#000d21]">Global Headquarters</h4>
+          <h4 className="text-xl font-bold text-[#000d21]">Hahobal Biopharmaceuticals India Pvt. Ltd.</h4>
           <p className="text-[#44474d] mt-1 leading-relaxed">
-            100 Biotech Plaza, Suite 400<br/>Cambridge, MA 02139, USA
+            NO 201 Swaroop Aditya Avenue,<br/>
+            Marol Pipeline Road, International Airport,<br/>
+            Kranti Nagar, Andheri East,<br/>
+            Mumbai - 400 059, Maharashtra, India
           </p>
-          <p className="text-[#006a63] text-sm font-medium mt-2 flex items-center gap-1 cursor-pointer hover:underline">
+          <a
+            href="https://www.google.com/maps/place/4V38%2BXV+Mumbai,+Maharashtra"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#006a63] text-sm font-medium mt-2 flex items-center gap-1 hover:underline"
+          >
             <Map className="w-4.5 h-4.5" /> View on Map
-          </p>
+          </a>
         </div>
       </div>
 
-      {/* EU Hub */}
-      <div className="flex gap-4 group">
-        <Building2 className="text-[#006a63] w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-        <div>
-          <h4 className="text-xl font-bold text-[#000d21]">EU Regulatory Hub</h4>
-          <p className="text-[#44474d] mt-1 leading-relaxed">
-            Technologiepark 122<br/>B-9052 Gent, Belgium
-          </p>
-        </div>
-      </div>
-
-      {/* Media & Support */}
+      {/* Contact Details */}
       <div className="flex gap-4 group">
         <Phone className="text-[#006a63] w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110" />
         <div>
-          <h4 className="text-xl font-bold text-[#000d21]">Media & Support</h4>
+          <h4 className="text-xl font-bold text-[#000d21]">Contact Information</h4>
           <p className="text-[#44474d] mt-1 leading-relaxed">
-            General: +1 (617) 555-0192<br/>Clinical Support: +1 (617) 555-0800
+            Phone: <a href="tel:+919840070222" className="text-[#006a63] hover:underline">+91 98400 70222</a>
+          </p>
+          <p className="text-[#44474d] mt-1 leading-relaxed">
+            Email: <a href="mailto:info@hahoballifesciences.com" className="text-[#006a63] hover:underline">info@hahoballifesciences.com</a>
+          </p>
+          <p className="text-[#44474d] mt-1 leading-relaxed">
+            Sales: <a href="mailto:sales@hahoballifesciences.com" className="text-[#006a63] hover:underline">sales@hahoballifesciences.com</a>
+          </p>
+          <p className="text-[#44474d] mt-1 leading-relaxed">
+            Support: <a href="mailto:support@hahoballifesciences.com" className="text-[#006a63] hover:underline">support@hahoballifesciences.com</a>
           </p>
         </div>
       </div>
     </div>
   </motion.div>
-);
-
-const Careers = () => (
-  <section className="mb-20 max-w-7xl mx-auto px-6 md:px-12">
-    <motion.div 
-      className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      variants={fadeUpVariant}
-    >
-      <div>
-        <h3 className="text-4xl lg:text-5xl font-bold text-[#000d21] tracking-tight">Join our pursuit of precision.</h3>
-        <p className="text-lg text-[#44474d] max-w-2xl mt-3 leading-relaxed">
-          We are looking for visionary professionals to help us redefine oncology treatment and patient care.
-        </p>
-      </div>
-      <div className="flex gap-3 shrink-0">
-        <button className="px-5 py-2 bg-[#90f4e8] text-[#005140] rounded text-sm font-medium transition-colors duration-300 hover:bg-[#006a63] hover:text-white">
-          All Roles
-        </button>
-        <button className="px-5 py-2 border border-[#74777e] text-[#44474d] rounded text-sm font-medium transition-colors duration-300 hover:bg-[#f2f4f5]">
-          Remote Only
-        </button>
-      </div>
-    </motion.div>
-
-    {/* Job List Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {/* Sales Role */}
-      <motion.div 
-        className="bg-white p-6 border border-[#c4c6ce] rounded-lg hover:border-[#006a63] transition-all duration-300 group cursor-pointer"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        variants={fadeUpVariant}
-      >
-        <div className="flex justify-between items-start mb-5">
-          <span className="bg-[#94f5d7] text-[#002018] px-3 py-1 rounded text-xs font-medium group-hover:bg-[#006a63] group-hover:text-white transition-colors duration-300">
-            Sales
-          </span>
-          <ArrowUpRight className="text-[#c4c6ce] w-5 h-5 group-hover:text-[#006a63] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
-        </div>
-        <h4 className="text-2xl font-bold text-[#000d21] mb-2">Regional Oncology Lead</h4>
-        <p className="text-base text-[#44474d] mb-6 leading-relaxed">
-          Drive strategic growth and establish clinical partnerships within the Northeast US territory.
-        </p>
-        <div className="flex items-center gap-5 text-[#44474d] text-sm font-medium">
-          <span className="flex items-center gap-1.5"><Clock className="w-4.5 h-4.5" /> Full-time</span>
-          <span className="flex items-center gap-1.5"><Navigation className="w-4.5 h-4.5" /> Boston, MA</span>
-        </div>
-      </motion.div>
-
-      {/* QA Role */}
-      <motion.div 
-        className="bg-white p-6 border border-[#c4c6ce] rounded-lg hover:border-[#006a63] transition-all duration-300 group cursor-pointer"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        variants={fadeUpVariant}
-        transition={{ delay: 0.1 }}
-      >
-        <div className="flex justify-between items-start mb-5">
-          <span className="bg-[#94f5d7] text-[#002018] px-3 py-1 rounded text-xs font-medium group-hover:bg-[#006a63] group-hover:text-white transition-colors duration-300">
-            QA
-          </span>
-          <ArrowUpRight className="text-[#c4c6ce] w-5 h-5 group-hover:text-[#006a63] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
-        </div>
-        <h4 className="text-2xl font-bold text-[#000d21] mb-2">Lead Quality Compliance Auditor</h4>
-        <p className="text-base text-[#44474d] mb-6 leading-relaxed">
-          Oversee manufacturing quality standards and ensure rigorous regulatory compliance across global sites.
-        </p>
-        <div className="flex items-center gap-5 text-[#44474d] text-sm font-medium">
-          <span className="flex items-center gap-1.5"><Clock className="w-4.5 h-4.5" /> Full-time</span>
-          <span className="flex items-center gap-1.5"><Navigation className="w-4.5 h-4.5" /> Remote / Hybrid</span>
-        </div>
-      </motion.div>
-
-      {/* Medical Affairs Role */}
-      <motion.div 
-        className="bg-white p-6 border border-[#c4c6ce] rounded-lg hover:border-[#006a63] transition-all duration-300 group cursor-pointer"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        variants={fadeUpVariant}
-        transition={{ delay: 0.2 }}
-      >
-        <div className="flex justify-between items-start mb-5">
-          <span className="bg-[#94f5d7] text-[#002018] px-3 py-1 rounded text-xs font-medium group-hover:bg-[#006a63] group-hover:text-white transition-colors duration-300">
-            Medical Affairs
-          </span>
-          <ArrowUpRight className="text-[#c4c6ce] w-5 h-5 group-hover:text-[#006a63] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
-        </div>
-        <h4 className="text-2xl font-bold text-[#000d21] mb-2">Medical Science Liaison</h4>
-        <p className="text-base text-[#44474d] mb-6 leading-relaxed">
-          Act as a scientific peer to oncologists, translating complex clinical data into actionable insights.
-        </p>
-        <div className="flex items-center gap-5 text-[#44474d] text-sm font-medium">
-          <span className="flex items-center gap-1.5"><Clock className="w-4.5 h-4.5" /> Full-time</span>
-          <span className="flex items-center gap-1.5"><Navigation className="w-4.5 h-4.5" /> Gent, Belgium</span>
-        </div>
-      </motion.div>
-    </div>
-
-    <motion.div 
-      className="mt-12 text-center"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      variants={fadeUpVariant}
-    >
-      <p className="text-[#44474d] text-base">
-        Don't see a role that fits?{' '}
-        <a href="#" className="text-[#006a63] font-bold hover:underline transition-all duration-300">
-          Submit your CV for general consideration.
-        </a>
-      </p>
-    </motion.div>
-  </section>
 );
 
 // --- Main Page Assembly ---
@@ -413,21 +297,18 @@ export default function ContactPage() {
   return (
     <main className="font-sans text-[#191c1d] bg-[#f8fafb] overflow-x-hidden">
       <Hero />
-      
-      {/* Split Section: Form & Map (Left) / Offices (Right) */}
+
+      {/* Split Section: Form (Left) / Offices (Right) */}
       <section className="mb-20 max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="flex flex-col gap-6">
+          <div>
             <ContactForm />
-            <LocalizedMap />
           </div>
           <div>
             <CorporateOffices />
           </div>
         </div>
       </section>
-
-      <Careers />
     </main>
   );
 }

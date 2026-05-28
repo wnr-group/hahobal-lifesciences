@@ -1,6 +1,7 @@
 "use client";
 import {motion, Variants} from "framer-motion";
-import {FileText, Users, Globe, Dna, Activity, TestTube2, Microscope, ChevronRight} from "lucide-react";
+import {FileText, Users, Globe, Dna, Activity, TestTube2, Microscope, ChevronRight, Lightbulb, ShieldCheck} from "lucide-react";
+import Link from "next/link";
 
 export default function HomePage() {
     // Smooth scroll-reveal animations
@@ -46,17 +47,13 @@ export default function HomePage() {
                         </h1>
 
                         <p className="text-white/90 text-base md:text-lg leading-relaxed mb-10 max-w-xl">
-                            We are pioneering the next generation of targeted therapies, bridging the gap between
-                            molecular discovery and life-changing patient outcomes.
+                            We are committed to transforming cancer care through high-quality oncology medicines, scientific innovation, and patient-focused healthcare solutions. Our mission is to make advanced cancer therapies accessible, affordable, and trusted across global markets.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <button className="bg-[#0a5c57] hover:bg-[#084844] text-white px-8 py-3.5 rounded-sm font-semibold transition-colors text-sm w-full sm:w-auto text-center shadow-lg border border-[#0a5c57]">
-                                View Clinical Pipeline
-                            </button>
-                            <button className="bg-transparent border border-gray-400 hover:border-white hover:bg-white/10 text-white px-8 py-3.5 rounded-sm font-semibold transition-colors text-sm w-full sm:w-auto text-center">
-                                Our Research Ethos
-                            </button>
+                            <Link href="/products" className="bg-[#0a5c57] hover:bg-[#084844] text-white px-8 py-3.5 rounded-sm font-semibold transition-colors text-sm w-full sm:w-auto text-center shadow-lg border border-[#0a5c57]">
+                                View Products
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -73,9 +70,10 @@ export default function HomePage() {
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     {/* Left: Text & Icons */}
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 tracking-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
                             Why Hahobal Lifesciences?
                         </h2>
+                        <p className="text-xl font-semibold text-[#0a5c57] mb-12">Excellence in Oncology</p>
 
                         <div className="space-y-10">
                             <div className="flex gap-6">
@@ -83,10 +81,9 @@ export default function HomePage() {
                                     <FileText className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-gray-900 mb-2">Evidence-Based Discovery</h3>
+                                    <h3 className="font-bold text-gray-900 mb-2">Quality You Can Trust</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">
-                                        Our research is anchored in rigorous clinical data and peer-reviewed scientific
-                                        methodologies to ensure therapeutic efficacy.
+                                        Every product undergoes rigorous quality testing to ensure safety, efficacy, and compliance with international pharmaceutical standards.
                                     </p>
                                 </div>
                             </div>
@@ -96,10 +93,9 @@ export default function HomePage() {
                                     <Users className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-gray-900 mb-2">Patient-Centric Approach</h3>
+                                    <h3 className="font-bold text-gray-900 mb-2">Oncology Expertise</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">
-                                        Every drug in our pipeline is designed with the patient's quality of life as the
-                                        primary metric of success.
+                                        We focus specifically on oncology, enabling us to provide specialized and advanced therapeutic solutions.
                                     </p>
                                 </div>
                             </div>
@@ -109,10 +105,33 @@ export default function HomePage() {
                                     <Globe className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-gray-900 mb-2">Global Scientific Network</h3>
+                                    <h3 className="font-bold text-gray-900 mb-2">Reliable Partnerships</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">
-                                        Collaborating with the world's leading academic institutions to accelerate the
-                                        translation of research into reality.
+                                        We collaborate with healthcare providers, distributors, hospitals, and institutions to strengthen cancer care accessibility.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-6">
+                                <div className="shrink-0 w-12 h-12 bg-[#eef7f6] text-[#0a5c57] rounded-sm flex items-center justify-center">
+                                    <Lightbulb className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-gray-900 mb-2">Innovation Driven</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                        We continuously work toward improving formulations, patient convenience, and therapeutic effectiveness.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-6">
+                                <div className="shrink-0 w-12 h-12 bg-[#eef7f6] text-[#0a5c57] rounded-sm flex items-center justify-center">
+                                    <ShieldCheck className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-gray-900 mb-2">Ethical Business Practices</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                        Transparency, integrity, and compliance remain at the heart of our operations.
                                     </p>
                                 </div>
                             </div>
