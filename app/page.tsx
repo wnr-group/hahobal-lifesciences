@@ -251,42 +251,8 @@ export default function HomePage() {
                             Our Mission: Precision for Life
                         </h2>
                         <p className="text-[#8ba2be] leading-relaxed text-sm md:text-base mb-16">
-                            At Hahobal Lifesciences, we believe that the future of cancer care is personal. Our mission
-                            is to accelerate the arrival of that future by discovering and developing precision
-                            medicines that are precisely matched to the unique molecular drivers of each patient's
-                            disease. We work tirelessly to transform cancer from a life-threatening diagnosis into a
-                            manageable chronic condition.
+                            At Hahobal, we believe the future of cancer care is personal. Our mission is to accelerate the discovery and development of precision medicines that target the unique molecular drivers of each patient’s disease. Through cutting-edge science, advanced biotechnology, and patient-centered innovation, we strive to transform cancer from a life-threatening diagnosis into a disease that can be effectively prevented, managed, and ultimately cured.
                         </p>
-
-                        {/* Stats Row */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">12+</div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Clinical Trials
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">
-                                    450+
-                                </div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Scientists
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">85%</div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Efficacy Rate
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">20+</div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Patents
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </motion.section>
