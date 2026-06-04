@@ -1,6 +1,6 @@
 "use client";
 import {motion, Variants} from "framer-motion";
-import {FileText, Users, Globe, Dna, Activity, TestTube2, Microscope, ChevronRight, Lightbulb, ShieldCheck} from "lucide-react";
+import {FileText, Users, Globe, Dna, Activity, TestTube2, Microscope, ChevronRight, Lightbulb, ShieldCheck, ArrowLeftRight, HeartPulse} from "lucide-react";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -158,81 +158,204 @@ export default function HomePage() {
             </motion.section>
 
             {/* 3. THERAPEUTIC FOCUS */}
-            <motion.section
-                className="py-16 md:py-24 px-6 lg:px-20 bg-gray-50/50"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{once: true, amount: 0.15}}
-                variants={fadeUpVariant}
-            >
-                <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
-                        Therapeutic Focus
-                    </h2>
-                    <p className="text-gray-600 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-                        We concentrate our efforts on high-impact oncology sectors where unmet needs are greatest.
-                    </p>
-                </div>
+           <motion.section
+      // Adjusted outer padding for tighter mobile screens
+      className="py-12 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-20 bg-gray-50/50 overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={fadeUpVariant}
+    >
+      {/* HEADER SECTION */}
+      <div className="text-center max-w-4xl mx-auto mb-12 md:mb-16 lg:mb-20">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6 tracking-tight">
+          Therapeutic Focus
+        </h2>
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg mx-auto leading-relaxed px-2">
+          At HAHOBAL Biopharmaceuticals, we are committed to advancing innovative therapies that address critical unmet medical needs. Our research and development efforts focus on oncology, hematological malignancies, and supportive care solutions designed to improve patient outcomes and quality of life.
+        </p>
+      </div>
 
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
-                    {/* Card 1: Solid Tumors */}
-                    <div className="group bg-white border border-gray-100 border-t-2 border-t-[#0a5c57] p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div className="w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-6 transition-colors group-hover:bg-[#0a5c57] group-hover:text-white duration-300">
-                            <Dna className="w-6 h-6 stroke-[1.5]" />
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">Solid Tumors</h3>
-                        <p className="text-gray-600 text-sm mb-6 leading-relaxed grow">
-                            Developing small molecule inhibitors targeting specific genomic alterations in lung, breast,
-                            and colorectal cancers.
-                        </p>
-                        <a
-                            href="#"
-                            className="inline-flex items-center text-sm font-semibold text-[#0a5c57] hover:text-[#084844] transition-colors mt-auto group/link"
-                        >
-                            <span>Learn more</span>
-                            <ChevronRight className="w-4 h-4 ml-1 transform transition-transform group-hover/link:translate-x-1" />
-                        </a>
-                    </div>
+      {/* 2x2 GRID FOR MAXIMUM CONTENT SPACE */}
+      {/* 1 column on mobile, 2 columns on tablet/desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
+        
+        {/* CARD 1: ONCOLOGY */}
+        {/* Heights adapt to prevent text overflow on narrow screens */}
+        <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+            
+            {/* Front Side */}
+            {/* Padding scales from p-6 on mobile to p-10 on desktop */}
+            <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-5 md:mb-6 shrink-0">
+                <Microscope className="w-6 h-6 md:w-7 md:h-7 stroke-[1.5]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 tracking-tight">Oncology</h3>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed grow">
+                Cancer remains one of the world’s most significant healthcare challenges. We are dedicated to developing targeted therapies and precision medicines that address the molecular drivers of cancer progression. By leveraging advances in genomics, molecular biology, and translational medicine, we aim to deliver safer and more effective treatment options for patients worldwide.
+              </p>
+              <div className="inline-flex items-center text-sm font-semibold text-[#0a5c57] mt-4 pt-2">
+                <span>View pipeline focus</span>
+                <ArrowLeftRight className="w-4 h-4 ml-2" />
+              </div>
+            </div>
 
-                    {/* Card 2: Hematology */}
-                    <div className="group bg-white border border-gray-100 border-t-2 border-t-[#0a5c57] p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div className="w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-6 transition-colors group-hover:bg-[#0a5c57] group-hover:text-white duration-300">
-                            <Activity className="w-6 h-6 stroke-[1.5]" />
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">Hematology</h3>
-                        <p className="text-gray-600 text-sm mb-6 leading-relaxed grow">
-                            Advancing immunotherapies for leukemia and lymphoma that harness the body's own immune
-                            system to fight malignant cells.
-                        </p>
-                        <a
-                            href="#"
-                            className="inline-flex items-center text-sm font-semibold text-[#0a5c57] hover:text-[#084844] transition-colors mt-auto group/link"
-                        >
-                            <span>Learn more</span>
-                            <ChevronRight className="w-4 h-4 ml-1 transform transition-transform group-hover/link:translate-x-1" />
-                        </a>
-                    </div>
+            {/* Back Side */}
+            <div className="absolute inset-0 bg-[#0a5c57] text-white p-6 md:p-8 lg:p-10 rounded-xl shadow-lg flex flex-col [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+              <h3 className="text-lg md:text-xl font-bold mb-4 border-b border-white/20 pb-3 shrink-0">Our Oncology Pipeline Focuses On:</h3>
+              <div className="overflow-y-auto pr-2 pb-2 space-y-3 text-white/90 text-sm md:text-base scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent">
+                <ul className="list-disc pl-5 space-y-2 marker:text-white/70">
+                  <li>Precision oncology and biomarker-driven therapies</li>
+                  <li>Targeted small molecules</li>
+                  <li>Monoclonal antibodies</li>
+                  <li>Immuno-oncology approaches</li>
+                  <li>Combination treatment strategies</li>
+                  <li>Personalized cancer medicine</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                    {/* Card 3: Rare Cancers */}
-                    <div className="group bg-white border border-gray-100 border-t-2 border-t-[#0a5c57] p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div className="w-12 h-12 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-6 transition-colors group-hover:bg-[#0a5c57] group-hover:text-white duration-300">
-                            <TestTube2 className="w-6 h-6 stroke-[1.5]" />
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">Rare Cancers</h3>
-                        <p className="text-gray-600 text-sm mb-6 leading-relaxed grow">
-                            Dedicated research tracks for orphan oncology indications that are often overlooked by
-                            larger pharmaceutical firms.
-                        </p>
-                        <a
-                            href="#"
-                            className="inline-flex items-center text-sm font-semibold text-[#0a5c57] hover:text-[#084844] transition-colors mt-auto group/link"
-                        >
-                            <span>Learn more</span>
-                            <ChevronRight className="w-4 h-4 ml-1 transform transition-transform group-hover/link:translate-x-1" />
-                        </a>
-                    </div>
-                </div>
-            </motion.section>
+        {/* CARD 2: SOLID TUMORS */}
+        <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+            
+            {/* Front Side */}
+            <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-5 md:mb-6 shrink-0">
+                <Dna className="w-6 h-6 md:w-7 md:h-7 stroke-[1.5]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 tracking-tight">Solid Tumors</h3>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed grow">
+                Solid tumors account for the majority of cancer diagnoses and represent a major area of unmet medical need. Our research programs are focused on identifying novel therapeutic targets and developing innovative treatments for patients with advanced and difficult-to-treat cancers.
+              </p>
+              <div className="inline-flex items-center text-sm font-semibold text-[#0a5c57] mt-4 pt-2">
+                <span>View interests & approach</span>
+                <ArrowLeftRight className="w-4 h-4 ml-2" />
+              </div>
+            </div>
+
+            {/* Back Side */}
+            <div className="absolute inset-0 bg-[#0a5c57] text-white p-6 md:p-8 lg:p-10 rounded-xl shadow-lg flex flex-col [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+              <div className="overflow-y-auto pr-2 pb-2 text-white/90 text-sm scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent">
+                <h3 className="text-base md:text-lg font-bold mb-3 border-b border-white/20 pb-2 text-white">Areas of Interest</h3>
+                <ul className="list-disc pl-5 space-y-1.5 mb-5 md:mb-6 marker:text-white/70">
+                  <li>Breast Cancer</li>
+                  <li>Lung Cancer</li>
+                  <li>Colorectal Cancer</li>
+                  <li>Gastric Cancer</li>
+                  <li>Ovarian Cancer</li>
+                  <li>Prostate Cancer</li>
+                  <li>Head & Neck Cancer</li>
+                  <li>Hepatocellular Carcinoma</li>
+                  <li>Pancreatic Cancer</li>
+                </ul>
+
+                <h3 className="text-base md:text-lg font-bold mb-3 border-b border-white/20 pb-2 text-white">Scientific Approach</h3>
+                <ul className="list-disc pl-5 space-y-1.5 marker:text-white/70">
+                  <li>Molecular profiling</li>
+                  <li>Targeted therapies</li>
+                  <li>Tumor microenvironment research</li>
+                  <li>Immunotherapy strategies</li>
+                  <li>Companion diagnostics</li>
+                  <li>Precision medicine approaches</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CARD 3: HEMATOLOGY */}
+        <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+            
+            {/* Front Side */}
+            <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-5 md:mb-6 shrink-0">
+                <Activity className="w-6 h-6 md:w-7 md:h-7 stroke-[1.5]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 tracking-tight">Hematology</h3>
+              <div className="text-gray-600 text-sm md:text-base leading-relaxed grow space-y-3 md:space-y-4">
+                <p>Hematologic malignancies are complex diseases affecting blood, bone marrow, and lymphatic systems. We are developing innovative therapies designed to improve treatment outcomes and address resistance mechanisms associated with current standards of care.</p>
+                <p>Our goal is to provide transformative therapies that improve survival and quality of life for patients living with hematological cancers.</p>
+              </div>
+              <div className="inline-flex items-center text-sm font-semibold text-[#0a5c57] mt-4 pt-2">
+                <span>View focus & platforms</span>
+                <ArrowLeftRight className="w-4 h-4 ml-2" />
+              </div>
+            </div>
+
+            {/* Back Side */}
+            <div className="absolute inset-0 bg-[#0a5c57] text-white p-6 md:p-8 lg:p-10 rounded-xl shadow-lg flex flex-col [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+              <div className="overflow-y-auto pr-2 pb-2 text-white/90 text-sm scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent">
+                <h3 className="text-base md:text-lg font-bold mb-3 border-b border-white/20 pb-2 text-white">Focus Areas</h3>
+                <ul className="list-disc pl-5 space-y-1.5 mb-5 md:mb-6 marker:text-white/70">
+                  <li>Acute Myeloid Leukemia (AML)</li>
+                  <li>Acute Lymphoblastic Leukemia (ALL)</li>
+                  <li>Chronic Lymphocytic Leukemia (CLL)</li>
+                  <li>Multiple Myeloma</li>
+                  <li>Non-Hodgkin Lymphoma</li>
+                  <li>Hodgkin Lymphoma</li>
+                  <li>Myelodysplastic Syndromes (MDS)</li>
+                </ul>
+
+                <h3 className="text-base md:text-lg font-bold mb-3 border-b border-white/20 pb-2 text-white">Scientific Platforms</h3>
+                <ul className="list-disc pl-5 space-y-1.5 marker:text-white/70">
+                  <li>Targeted therapies</li>
+                  <li>Cell signaling pathway inhibitors</li>
+                  <li>Immunotherapeutic approaches</li>
+                  <li>Precision diagnostics</li>
+                  <li>Novel biologics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CARD 4: SUPPORTIVE CARE */}
+        <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+            
+            {/* Front Side */}
+            <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#e0f5f3] text-[#0a5c57] rounded-full flex items-center justify-center mb-5 md:mb-6 shrink-0">
+                <HeartPulse className="w-6 h-6 md:w-7 md:h-7 stroke-[1.5]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 tracking-tight">Supportive Care</h3>
+              <div className="text-gray-600 text-sm md:text-base leading-relaxed grow space-y-3 md:space-y-4">
+                <p>Effective cancer management extends beyond tumor control. Supportive care plays a critical role in reducing treatment-related complications, enhancing patient well-being, and enabling optimal therapeutic outcomes.</p>
+                <p>We are committed to developing innovative supportive care therapies that help patients maintain quality of life throughout their treatment journey while improving adherence to life-saving cancer therapies.</p>
+              </div>
+              <div className="inline-flex items-center text-sm font-semibold text-[#0a5c57] mt-4 pt-2">
+                <span>View key areas</span>
+                <ArrowLeftRight className="w-4 h-4 ml-2" />
+              </div>
+            </div>
+
+            {/* Back Side */}
+            <div className="absolute inset-0 bg-[#0a5c57] text-white p-6 md:p-8 lg:p-10 rounded-xl shadow-lg flex flex-col [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+              <h3 className="text-lg md:text-xl font-bold mb-4 border-b border-white/20 pb-3 shrink-0">Key Areas</h3>
+              <div className="overflow-y-auto pr-2 pb-2 space-y-3 text-white/90 text-sm scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent">
+                <ul className="list-disc pl-5 space-y-2 marker:text-white/70">
+                  <li>Chemotherapy-induced nausea and vomiting (CINV)</li>
+                  <li>Cancer-related pain management</li>
+                  <li>Anemia management</li>
+                  <li>Neutropenia support</li>
+                  <li>Infection prevention</li>
+                  <li>Nutritional support</li>
+                  <li>Fatigue management</li>
+                  <li>Bone health</li>
+                  <li>Palliative care solutions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </motion.section>
 
             {/* 4. MISSION & STATS BLOCK */}
             <motion.section
@@ -251,42 +374,8 @@ export default function HomePage() {
                             Our Mission: Precision for Life
                         </h2>
                         <p className="text-[#8ba2be] leading-relaxed text-sm md:text-base mb-16">
-                            At Hahobal Lifesciences, we believe that the future of cancer care is personal. Our mission
-                            is to accelerate the arrival of that future by discovering and developing precision
-                            medicines that are precisely matched to the unique molecular drivers of each patient's
-                            disease. We work tirelessly to transform cancer from a life-threatening diagnosis into a
-                            manageable chronic condition.
+                            At Hahobal, we believe the future of cancer care is personal. Our mission is to accelerate the discovery and development of precision medicines that target the unique molecular drivers of each patient’s disease. Through cutting-edge science, advanced biotechnology, and patient-centered innovation, we strive to transform cancer from a life-threatening diagnosis into a disease that can be effectively prevented, managed, and ultimately cured.
                         </p>
-
-                        {/* Stats Row */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">12+</div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Clinical Trials
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">
-                                    450+
-                                </div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Scientists
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">85%</div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Efficacy Rate
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2 text-white tracking-tight">20+</div>
-                                <div className="text-[10px] md:text-xs tracking-widest text-[#8ba2be] uppercase">
-                                    Patents
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </motion.section>

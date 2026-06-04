@@ -84,7 +84,7 @@ const ManufacturingExcellence = () => (
         <p className="text-sm font-semibold uppercase tracking-widest text-[#006a63]">Batch Reliability</p>
         <div className="mt-8 pt-8 border-t border-[#006a63]/20">
           <p className="text-base italic text-[#006a63] font-medium leading-relaxed">
-            "Precision at scale is the foundation of patient safety."
+            &quot;Precision at scale is the foundation of patient safety.&quot;
           </p>
         </div>
       </div>
@@ -257,8 +257,8 @@ const GlobalExpansionMap = () => {
           const response = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
           const topoData = await response.json();
           worldData = (window as any).topojson.feature(topoData, (topoData as any).objects.countries);
-        } catch(e) { 
-          console.error("Map loading error", e); 
+        } catch(e) {
+          // Silently handle map loading error
         }
       }
 

@@ -1,13 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/common/CookieConsent";
+import FloatingEnquiry from "@/components/common/FloatingEnquiry";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hahoballifesciences.com'),
   title: "Hahobal Lifesciences — Precision Oncology for Life",
   description: "Leading pharmaceutical company specializing in oncology medicines. WHO-GMP certified manufacturer of hormonal therapy, chemotherapy, targeted therapy, and supportive care products.",
   keywords: "Hahobal Lifesciences, oncology, cancer treatment, pharmaceutical company India, WHO-GMP certified, hormonal therapy, chemotherapy, targeted therapy",
@@ -45,11 +53,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -63,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main-content">{children}</main>
         <Footer />
         <CookieConsent />
+        <FloatingEnquiry />
       </body>
     </html>
   );
