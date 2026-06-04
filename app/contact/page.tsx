@@ -156,83 +156,226 @@ const Hero = () => {
     </section>
   );
 };
-const ContactForm = () => (
-  <motion.div 
-    className="bg-white p-8 border border-[#c4c6ce] rounded-lg shadow-sm"
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.15 }}
-    variants={fadeUpVariant}
-  >
-    <h3 className="text-3xl font-bold text-[#000d21] mb-6">General Inquiry</h3>
-    <form className="space-y-6" onSubmit={(e) => e.preventDefault()} aria-label="Contact inquiry form">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-name" className="text-sm font-medium text-[#44474d]">Full Name</label>
-          <input
-            id="contact-name"
-            name="name"
-            type="text"
-            placeholder="John Doe"
-            required
-            aria-required="true"
-            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-email" className="text-sm font-medium text-[#44474d]">Email Address</label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            placeholder="john@example.com"
-            required
-            aria-required="true"
-            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all"
-          />
-        </div>
-      </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="contact-inquiry-type" className="text-sm font-medium text-[#44474d]">Inquiry Type</label>
-        <select
-          id="contact-inquiry-type"
-          name="inquiryType"
-          required
-          aria-required="true"
-          className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] bg-white transition-all"
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    inquiryType: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: data.message || 'Your inquiry has been sent successfully!',
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          inquiryType: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.error || 'Failed to send inquiry. Please try again.',
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <motion.div
+      className="bg-white p-8 border border-[#c4c6ce] rounded-lg shadow-sm"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      variants={fadeUpVariant}
+    >
+      <h3 className="text-3xl font-bold text-[#000d21] mb-6">General Inquiry</h3>
+
+      {/* Success/Error Messages */}
+      {submitStatus.type && (
+        <div
+          className={`mb-6 p-4 rounded-lg ${
+            submitStatus.type === 'success'
+              ? 'bg-green-50 text-green-800 border border-green-200'
+              : 'bg-red-50 text-red-800 border border-red-200'
+          }`}
         >
-          <option value="">Select inquiry type</option>
-          <option value="clinical">Clinical Partnership</option>
-          <option value="investor">Investor Relations</option>
-          <option value="medical">Medical Affairs</option>
-          <option value="career">Career Information</option>
-        </select>
-      </div>
+          <p className="text-sm font-medium">{submitStatus.message}</p>
+        </div>
+      )}
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="contact-message" className="text-sm font-medium text-[#44474d]">Message</label>
-        <textarea
-          id="contact-message"
-          name="message"
-          rows={4}
-          placeholder="How can we assist you today?"
-          required
-          aria-required="true"
-          className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all resize-none"
-        />
-      </div>
+      <form className="space-y-6" onSubmit={handleSubmit} aria-label="Contact inquiry form">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-name" className="text-sm font-medium text-[#44474d]">
+              Full Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              placeholder="John Doe"
+              required
+              aria-required="true"
+              value={formData.name}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-email" className="text-sm font-medium text-[#44474d]">
+              Email Address <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              placeholder="john@example.com"
+              required
+              aria-required="true"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            />
+          </div>
+        </div>
 
-      <button
-        type="submit"
-        aria-label="Submit contact inquiry form"
-        className="bg-[#006a63] text-white px-8 py-3 rounded text-sm font-medium hover:bg-[#00504a] focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:ring-offset-2 transform hover:-translate-y-0.5 transition-all duration-300 w-full md:w-auto shadow-sm hover:shadow-md"
-      >
-        Submit Inquiry
-      </button>
-    </form>
-  </motion.div>
-);
+        <div className="flex flex-col gap-2">
+          <label htmlFor="contact-phone" className="text-sm font-medium text-[#44474d]">
+            Phone Number <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="contact-phone"
+            name="phone"
+            type="tel"
+            placeholder="+91 98765 43210"
+            required
+            aria-required="true"
+            value={formData.phone}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="contact-inquiry-type" className="text-sm font-medium text-[#44474d]">
+            Inquiry Type <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="contact-inquiry-type"
+            name="inquiryType"
+            required
+            aria-required="true"
+            value={formData.inquiryType}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <option value="">Select inquiry type</option>
+            <option value="Clinical Partnership">Clinical Partnership</option>
+            <option value="Investor Relations">Investor Relations</option>
+            <option value="Medical Affairs">Medical Affairs</option>
+            <option value="Career Information">Career Information</option>
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="contact-message" className="text-sm font-medium text-[#44474d]">
+            Message <span className="text-red-500">*</span>
+          </label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows={4}
+            placeholder="How can we assist you today?"
+            required
+            aria-required="true"
+            value={formData.message}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            className="border border-[#74777e] p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:border-[#006a63] transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          aria-label="Submit contact inquiry form"
+          className="bg-[#006a63] text-white px-8 py-3 rounded text-sm font-medium hover:bg-[#00504a] focus:outline-none focus:ring-2 focus:ring-[#006a63] focus:ring-offset-2 transform hover:-translate-y-0.5 transition-all duration-300 w-full md:w-auto shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none"
+        >
+          {isSubmitting ? (
+            <span className="flex items-center justify-center gap-2">
+              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="none"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              Sending...
+            </span>
+          ) : (
+            'Submit Inquiry'
+          )}
+        </button>
+      </form>
+    </motion.div>
+  );
+};
 
 const CorporateOffices = () => (
   <motion.div 

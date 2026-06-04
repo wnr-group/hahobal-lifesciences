@@ -312,7 +312,7 @@ export default function CookiePolicyPage() {
           <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Do Not Track (DNT) Signals</h2>
             <p className="text-gray-600 leading-relaxed">
-              Some browsers offer a "Do Not Track" (DNT) signal. Currently, there is no industry standard for responding to DNT signals. Hahobal Lifesciences does not currently respond to DNT signals, but we respect your right to control cookies through browser settings and opt-out mechanisms.
+              Some browsers offer a &quot;Do Not Track&quot; (DNT) signal. Currently, there is no industry standard for responding to DNT signals. Hahobal Lifesciences does not currently respond to DNT signals, but we respect your right to control cookies through browser settings and opt-out mechanisms.
             </p>
           </div>
         </motion.section>

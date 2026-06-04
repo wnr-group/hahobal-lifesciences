@@ -191,27 +191,42 @@ export default function AboutUsPage() {
         {/* 5-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {/* Card 1 */}
-          <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
+          <motion.div
+            className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start group cursor-pointer"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <ShieldCheck className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
             <h3 className="text-lg font-bold text-gray-900 mb-3">Integrity</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Upholding the highest ethical standards in every clinical trial
               and corporate partnership.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 2 */}
-          <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
+          <motion.div
+            className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start group cursor-pointer"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <Lightbulb className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
             <h3 className="text-lg font-bold text-gray-900 mb-3">Innovation</h3>
             <p className="text-gray-500 text-xs leading-relaxed">
               Pushing the boundaries of molecular science to discover
               next-generation therapies.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 3 */}
-          <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
+          <motion.div
+            className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start group cursor-pointer"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <Award className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
             <h3 className="text-lg font-bold text-gray-900 mb-3">
               Quality Excellence
@@ -220,10 +235,15 @@ export default function AboutUsPage() {
               Uncompromising rigor in manufacturing and quality control across
               our entire pipeline.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 4 */}
-          <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
+          <motion.div
+            className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start group cursor-pointer"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <Heart className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
             <h3 className="text-lg font-bold text-gray-900 mb-3">
               Patient Commitment
@@ -232,10 +252,15 @@ export default function AboutUsPage() {
               Placing the well-being and outcomes of patients at the heart of
               our scientific journey.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 5 */}
-          <div className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
+          <motion.div
+            className="bg-white p-8 rounded-sm shadow-sm border border-gray-100 flex flex-col items-start group cursor-pointer"
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <FlaskConical className="w-6 h-6 text-gray-400 group-hover:text-[#0a5c57] transition-colors mb-6 stroke-[1.5]" />
             <h3 className="text-lg font-bold text-gray-900 mb-3">
               Scientific Responsibility
@@ -244,7 +269,7 @@ export default function AboutUsPage() {
               Operating with evidence-based precision and accountability to the
               global community.
             </p>
-          </div>
+          </motion.div>
         </div>
       </motion.section>
     </div>
