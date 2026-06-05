@@ -14,20 +14,42 @@ export default function HomePage() {
         },
     };
 
+    // Hero staggered animation variants
+    const heroContainerVariant: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.3,
+                delayChildren: 0.2,
+            }
+        }
+    };
+
+    const heroItemVariant: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1,
+                ease: [0.4, 0, 0.2, 1]
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen bg-[#f8fafc] font-sans text-gray-800 selection:bg-[#0a5c57] selection:text-white overflow-hidden pb-20">
-            <motion.section
-                className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 px-6 lg:px-20 text-white overflow-hidden bg-[#031513]"
-                initial="hidden"
-                animate="visible"
-                variants={fadeUpVariant}
-            >
+            <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 px-6 lg:px-20 text-white overflow-hidden bg-[#031513]">
                 {/* Natural Background Image (No heavy color blending) */}
-                <div
+                <motion.div
                     className="absolute inset-0 w-full h-full bg-cover bg-center opacity-70"
                     style={{
                         backgroundImage: 'url("home-hero-image.png")',
                     }}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 0.7, scale: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
                 />
 
                 <div className="absolute inset-0 bg-linear-to-r from-[#031513] via-[#031513]/80 to-transparent z-10" />
@@ -35,29 +57,46 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-[#031513]/30 z-10" />
 
                 {/* Hero Content */}
-                <div className="relative z-20 max-w-350 mx-auto">
+                <motion.div
+                    className="relative z-20 max-w-350 mx-auto"
+                    initial="hidden"
+                    animate="visible"
+                    variants={heroContainerVariant}
+                >
                     <div className="max-w-2xl">
                         {/* The exact bright cyan pill from the screenshot */}
-                        <div className="inline-block bg-[#4ae0c7] text-[#021613] text-[11px] font-bold px-4 py-1.5 mb-6 rounded-sm uppercase tracking-wider">
+                        <motion.div
+                            className="inline-block bg-[#4ae0c7] text-[#021613] text-[11px] font-bold px-4 py-1.5 mb-6 rounded-sm uppercase tracking-wider"
+                            variants={heroItemVariant}
+                        >
                             Leading with Science
-                        </div>
+                        </motion.div>
 
-                        <h1 className="text-4xl md:text-4xl lg:text-[4.2rem] font-bold text-white leading-[1.1] mb-6 tracking-tight">
+                        <motion.h1
+                            className="text-4xl md:text-4xl lg:text-[4.2rem] font-bold text-white leading-[1.1] mb-6 tracking-tight"
+                            variants={heroItemVariant}
+                        >
                             Precision Oncology for a Healthier Tomorrow
-                        </h1>
+                        </motion.h1>
 
-                        <p className="text-white/90 text-base md:text-lg leading-relaxed mb-10 max-w-xl">
+                        <motion.p
+                            className="text-white/90 text-base md:text-lg leading-relaxed mb-10 max-w-xl"
+                            variants={heroItemVariant}
+                        >
                             We are committed to transforming cancer care through high-quality oncology medicines, scientific innovation, and patient-focused healthcare solutions. Our mission is to make advanced cancer therapies accessible, affordable, and trusted across global markets.
-                        </p>
+                        </motion.p>
 
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <motion.div
+                            className="flex flex-col sm:flex-row gap-4"
+                            variants={heroItemVariant}
+                        >
                             <Link href="/products" className="bg-[#0a5c57] hover:bg-[#084844] text-white px-8 py-3.5 rounded-sm font-semibold transition-colors text-sm w-full sm:w-auto text-center shadow-lg border border-[#0a5c57]">
                                 View Products
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
-                </div>
-            </motion.section>
+                </motion.div>
+            </section>
 
             {/* 2. WHY HAHOBAL SECTION */}
             <motion.section
@@ -183,7 +222,7 @@ export default function HomePage() {
         {/* CARD 1: ONCOLOGY */}
         {/* Heights adapt to prevent text overflow on narrow screens */}
         <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
-          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+          <div className="relative w-full h-full transition-transform duration-[1200ms] ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
             
             {/* Front Side */}
             {/* Padding scales from p-6 on mobile to p-10 on desktop */}
@@ -220,7 +259,7 @@ export default function HomePage() {
 
         {/* CARD 2: SOLID TUMORS */}
         <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
-          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+          <div className="relative w-full h-full transition-transform duration-[1200ms] ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
             
             {/* Front Side */}
             <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
@@ -269,7 +308,7 @@ export default function HomePage() {
 
         {/* CARD 3: HEMATOLOGY */}
         <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
-          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+          <div className="relative w-full h-full transition-transform duration-[1200ms] ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
             
             {/* Front Side */}
             <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
@@ -316,7 +355,7 @@ export default function HomePage() {
 
         {/* CARD 4: SUPPORTIVE CARE */}
         <div className="group h-[480px] md:h-[500px] lg:h-[450px] [perspective:1000px]">
-          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+          <div className="relative w-full h-full transition-transform duration-[1200ms] ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
             
             {/* Front Side */}
             <div className="absolute inset-0 bg-white border border-gray-100 border-t-4 border-t-[#0a5c57] p-6 md:p-8 lg:p-10 rounded-xl shadow-sm flex flex-col [backface-visibility:hidden]">
