@@ -14,29 +14,54 @@ import {
 // --- Animation Config ---
 const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.2, 1, 0.3, 1] } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.2, 1, 0.3, 1] }
+  }
+};
+
+// Hero staggered animation variants
+const heroContainerVariant: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.2,
+    }
+  }
+};
+
+const heroItemVariant: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.4, 0, 0.2, 1]
+    }
   }
 };
 
 // --- Sub-Components ---
 const Hero = () => {
   return (
-    <motion.section
-      className="relative py-32 md:py-40 lg:py-48 flex items-center overflow-hidden"
-      initial="hidden"
-      animate="visible"
-    >
+    <section className="relative py-32 md:py-40 lg:py-48 flex items-center overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 opacity-100">
+      <motion.div
+        className="absolute inset-0 z-0 opacity-100"
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
         <img
           className="w-full h-full object-cover object-center"
           src="social-hero-image.png"
           alt="Doctor holding patient's hand"
         />
-      </div>
+      </motion.div>
 
       {/* Dark Blue Linear Gradient Overlay matching your HTML */}
       <div
@@ -44,17 +69,31 @@ const Hero = () => {
         style={{ background: 'linear-gradient(to right, rgba(12, 35, 64, 0.9), rgba(12, 35, 64, 0.2))' }}
       />
 
-      <div className="relative z-20 max-w-7xl mx-auto px-4 md:px-12 w-full">
-        <motion.div className="max-w-3xl" variants={fadeUpVariant}>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
+      <motion.div
+        className="relative z-20 max-w-7xl mx-auto px-4 md:px-12 w-full"
+        initial="hidden"
+        animate="visible"
+        variants={heroContainerVariant}
+      >
+        <div className="max-w-3xl">
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight"
+            variants={heroItemVariant}
+          >
             Caring Beyond Medicines
-          </h1>
+          </motion.h1>
 
-          <p className="text-lg text-white/90 leading-relaxed mb-8">
+          <motion.p
+            className="text-lg text-white/90 leading-relaxed mb-8"
+            variants={heroItemVariant}
+          >
             We believe healthcare should create a positive social impact. Through awareness initiatives and healthcare support programs, we contribute toward improving cancer education and patient support.
-          </p>
+          </motion.p>
 
-          <div className="space-y-6 text-base md:text-lg text-white/85 leading-relaxed">
+          <motion.div
+            className="space-y-6 text-base md:text-lg text-white/85 leading-relaxed"
+            variants={heroItemVariant}
+          >
             <p>
               At Hahobal Lifesciences, we understand that a cancer diagnosis changes everything—not just for the patient, but for their entire circle of loved ones. We believe that true healing requires more than just advanced chemistry; it requires a steadfast commitment to the human spirit.
             </p>
@@ -62,10 +101,10 @@ const Hero = () => {
             <p>
               Our responsibility doesn't end when a life-saving medicine reaches the pharmacy shelf. It begins with the hand held, the question answered, and the community supported. We are dedicated to bridging the gap between clinical treatment and holistic care, ensuring that no one has to walk this path alone.
             </p>
-          </div>
-        </motion.div>
-      </div>
-    </motion.section>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
   );
 };
 

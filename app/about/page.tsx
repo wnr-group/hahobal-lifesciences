@@ -21,35 +21,65 @@ export default function AboutUsPage() {
     }
   };
 
+  // Hero staggered animation variants
+  const heroContainerVariant: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const heroItemVariant: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f4f7f9] font-sans text-gray-800 selection:bg-[#0a5c57] selection:text-white overflow-hidden pb-0">
       {/* 1. HERO SECTION (Corporate Meeting) - UPDATED HEIGHT LOGIC */}
-      <motion.section
-        className="relative min-h-125 md:min-h-150 lg:min-h-175 flex items-center justify-center px-6 lg:px-20 text-white overflow-hidden"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUpVariant}
-      >
+      <section className="relative min-h-125 md:min-h-150 lg:min-h-175 flex items-center justify-center px-6 lg:px-20 text-white overflow-hidden">
         {/* Boardroom/Science Meeting Background Image */}
-        <div
+        <motion.div
           className="absolute inset-0 w-full h-full bg-cover bg-center"
           style={{
             backgroundImage: 'url("about-hero-image.png")'
           }}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
         {/* Dark Overlays for Text Readability */}
         <div className="absolute inset-0 bg-[#052b29]/60 mix-blend-multiply z-10" />
         <div className="absolute inset-0 bg-linear-to-t from-[#052b29]/80 via-transparent to-transparent z-10" />
 
         {/* Hero Content */}
-        <div className="relative z-20 max-w-350 mx-auto text-center flex flex-col items-center justify-center">
-          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold text-white leading-[1.1] tracking-tight mb-6">
+        <motion.div
+          className="relative z-20 max-w-350 mx-auto text-center flex flex-col items-center justify-center"
+          initial="hidden"
+          animate="visible"
+          variants={heroContainerVariant}
+        >
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-[4rem] font-bold text-white leading-[1.1] tracking-tight mb-6"
+            variants={heroItemVariant}
+          >
             Committed to Life.
             <br />
             Dedicated to Oncology.
-          </h1>
-        </div>
-      </motion.section>
+          </motion.h1>
+        </motion.div>
+      </section>
 
       {/* 2. WHO WE ARE SECTION */}
       <motion.section

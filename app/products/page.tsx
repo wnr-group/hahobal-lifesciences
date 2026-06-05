@@ -9,7 +9,6 @@ import {
   FlaskConical,
   Target,
   HeartHandshake,
-  ArrowRight,
   Factory,
   Microscope,
   Shield,
@@ -28,48 +27,90 @@ export default function ProductsPage() {
     }
   };
 
+  // Hero staggered animation variants
+  const heroContainerVariant: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const heroItemVariant: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white font-sans text-gray-800 selection:bg-[#0a5c57] selection:text-white overflow-hidden pb-20">
       
       {/* 1. FULL-WIDTH HERO SECTION (Dark Theme) */}
-      <motion.section
-        className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 px-6 lg:px-20 text-white overflow-hidden bg-[#052b29]"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUpVariant}
-      >
+      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 px-6 lg:px-20 text-white overflow-hidden bg-[#052b29]">
         {/* Background Image (Vials) aligned to the right without heavy blending */}
-        <div
+        <motion.div
           className="absolute right-0 top-0 w-full lg:w-[65%] h-full bg-cover bg-center opacity-80"
           style={{
             backgroundImage: 'url("product-hero-image.png")'
           }}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 0.8, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
-        
+
         {/* Gradients: Solid dark on the left fading to transparent on the right */}
         <div className="absolute inset-0 bg-linear-to-r from-[#052b29] via-[#052b29]/95 to-transparent z-10" />
         <div className="absolute inset-0 bg-linear-to-t from-[#052b29]/60 via-transparent to-transparent z-10" />
 
         {/* Hero Content */}
-        <div className="relative z-20 max-w-350 mx-auto flex flex-col lg:flex-row items-center">
+        <motion.div
+          className="relative z-20 max-w-350 mx-auto flex flex-col lg:flex-row items-center"
+          initial="hidden"
+          animate="visible"
+          variants={heroContainerVariant}
+        >
           <div className="lg:w-3/5">
-            <div className="flex items-center gap-2 text-[#4ae0c7] text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
-              <CheckCircle2 className="w-4 h-4" />
+            <motion.div
+              className="flex items-center gap-2 text-[#4ae0c7] text-[10px] font-bold tracking-[0.2em] uppercase mb-6"
+              variants={heroItemVariant}
+            >
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 200 }}
+              >
+                <CheckCircle2 className="w-4 h-4" />
+              </motion.div>
               <span>WHO-GMP Certified Manufacturing</span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight">
+            <motion.h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight"
+              variants={heroItemVariant}
+            >
               Precision Oncology Therapeutics Portfolio
-            </h1>
+            </motion.h1>
 
-            <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl">
+            <motion.p
+              className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl"
+              variants={heroItemVariant}
+            >
               Advancing patient outcomes through a comprehensive range of
               high-efficacy oncology solutions, developed with clinical
               precision and manufactured under global quality standards.
-            </p>
+            </motion.p>
           </div>
-        </div>
-      </motion.section>
+        </motion.div>
+      </section>
 
       {/* 2. THERAPEUTIC CATEGORIES GRID */}
       <motion.section
@@ -146,17 +187,10 @@ export default function ProductsPage() {
             <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">
               Chemotherapy Range
             </h3>
-            <p className="text-sm text-gray-500 leading-relaxed grow mb-8">
+            <p className="text-sm text-gray-500 leading-relaxed">
               A robust portfolio of cytotoxic agents including antimetabolites,
               vinca alkaloids, and taxanes.
             </p>
-            <a
-              href="#"
-              className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase text-gray-400 group-hover:text-[#0a5c57] transition-colors mt-auto border-t border-gray-100 pt-4"
-            >
-              <span>Explore 42 SKUs</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
 
           {/* Bottom Card 2: Targeted Therapy */}
@@ -165,17 +199,10 @@ export default function ProductsPage() {
             <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-tight">
               Targeted Therapy
             </h3>
-            <p className="text-sm text-gray-500 leading-relaxed grow mb-8">
+            <p className="text-sm text-gray-500 leading-relaxed">
               Next-generation tyrosine kinase inhibitors and monoclonal
               antibodies for personalized patient treatment.
             </p>
-            <a
-              href="#"
-              className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase text-gray-400 group-hover:text-[#0a5c57] transition-colors mt-auto border-t border-gray-100 pt-4"
-            >
-              <span>Explore 18 SKUs</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
 
           {/* Bottom Card 3: Supportive Care (Dark Theme) */}
@@ -194,17 +221,10 @@ export default function ProductsPage() {
               <h3 className="text-lg font-bold mb-3 tracking-tight">
                 Supportive Care
               </h3>
-              <p className="text-sm text-gray-300 leading-relaxed grow mb-8">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Essential supportive oncology solutions focusing on nausea
                 management, neutropenia, and bone health.
               </p>
-              <a
-                href="#"
-                className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase text-white/70 group-hover:text-white transition-colors mt-auto border-t border-white/20 pt-4"
-              >
-                <span>Explore 12 SKUs</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </a>
             </div>
           </div>
         </div>
@@ -273,64 +293,267 @@ export default function ProductsPage() {
         </div>
       </motion.section>
 
-      {/* 4. GLOBAL DISTRIBUTION */}
+      {/* 4. GLOBAL DISTRIBUTION - OUR GLOBAL VISION */}
       <motion.section
-        className="py-20 px-6 lg:px-20 max-w-350 mx-auto flex flex-col lg:flex-row items-center gap-16"
+        className="py-20 px-6 lg:px-20 bg-[#f8fafc]"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeUpVariant}
       >
-        <div className="lg:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10 tracking-tight">
-            Global Distribution Network
-          </h2>
+        <div className="max-w-350 mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+              Our Global Vision
+            </h2>
+            <p className="text-xl text-[#0a5c57] font-semibold">
+              Future Distribution Network
+            </p>
+          </div>
 
-          <div className="space-y-10">
-            <div className="flex gap-5">
-              <div className="shrink-0 mt-1">
-                <Globe className="w-6 h-6 text-[#0a5c57]" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                  25+ Countries Served
-                </h4>
-                <p className="text-sm text-gray-500 leading-relaxed max-w-md">
-                  Seamless supply chain management ensuring life-saving
-                  medicines reach patients globally, without delay.
-                </p>
-              </div>
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Left Side - Image */}
+            <div className="lg:w-2/5 w-full relative group overflow-hidden rounded-sm shadow-xl border border-gray-100">
+              <img
+                src="product-image.png"
+                alt="Scientist in Laboratory"
+                className="w-full h-75 md:h-100 lg:h-125 object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Overlays */}
+              <div className="absolute inset-0 bg-[#0a5c57]/10 mix-blend-color pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#052b29]/20 to-transparent pointer-events-none" />
             </div>
 
-            <div className="flex gap-5">
-              <div className="shrink-0 mt-1">
-                <Snowflake className="w-6 h-6 text-[#0a5c57]" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                  Cold Chain Excellence
-                </h4>
-                <p className="text-sm text-gray-500 leading-relaxed max-w-md">
-                  Validated temperature-controlled logistics for sensitive
-                  biologicals and targeted therapies.
+            {/* Right Side - Cards Grid */}
+            <div className="lg:w-3/5 w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Card 1: Expanding Across 25+ Countries */}
+              <motion.div
+                className="bg-white p-6 border border-gray-100 shadow-sm rounded-sm hover:shadow-lg transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="text-2xl">🌍</div>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight">
+                    Expanding Across 25+ Countries
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Our long-term vision is to build a robust international distribution network that ensures innovative oncology therapies reach patients worldwide with speed, reliability, and regulatory compliance.
                 </p>
-              </div>
+              </motion.div>
+
+              {/* Card 2: Advanced Cold Chain Infrastructure */}
+              <motion.div
+                className="bg-white p-6 border border-gray-100 shadow-sm rounded-sm hover:shadow-lg transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="text-2xl">❄️</div>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight">
+                    Advanced Cold Chain Infrastructure
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  We aim to establish validated temperature-controlled logistics capabilities to support the global delivery of biologics, biosimilars, and precision medicines while maintaining product integrity throughout the supply chain.
+                </p>
+              </motion.div>
+
+              {/* Card 3: Strategic Global Partnerships */}
+              <motion.div
+                className="bg-white p-6 border border-gray-100 shadow-sm rounded-sm hover:shadow-lg transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="text-2xl">🤝</div>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight">
+                    Strategic Global Partnerships
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Collaborating with leading healthcare organizations, distributors, and research institutions to expand access to life-saving therapies across emerging and developed markets.
+                </p>
+              </motion.div>
+
+              {/* Card 4: Integrated Supply Chain Excellence */}
+              <motion.div
+                className="bg-white p-6 border border-gray-100 shadow-sm rounded-sm hover:shadow-lg transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="text-2xl">📦</div>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight">
+                    Integrated Supply Chain Excellence
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Developing a digitally enabled supply chain ecosystem that enhances transparency, traceability, and operational efficiency from manufacturing to patient delivery.
+                </p>
+              </motion.div>
+
+              {/* Card 5: Patient-Centric Access Programs - Full Width */}
+              <motion.div
+                className="md:col-span-2 bg-gradient-to-br from-[#0a5c57] to-[#084844] text-white p-6 shadow-lg rounded-sm hover:shadow-xl transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="text-2xl">🏥</div>
+                  <h3 className="text-xl font-bold tracking-tight">
+                    Patient-Centric Access Programs
+                  </h3>
+                </div>
+                <p className="text-sm text-white/90 leading-relaxed">
+                  Committed to improving treatment accessibility through innovative patient support initiatives and sustainable healthcare solutions.
+                </p>
+              </motion.div>
             </div>
           </div>
         </div>
+      </motion.section>
 
-        <div className="lg:w-1/2 w-full relative group overflow-hidden rounded-sm shadow-xl border border-gray-100">
-          {/* Replaced broken webpage link with a direct JPG link */}
-          <img
-            src="product-image.png"
-            alt="Scientist in Laboratory"
-            className="w-full h-75 md:h-100 lg:h-112.5 object-cover transition-transform duration-700 group-hover:scale-105"
+      {/* 5. VISION STATEMENT BANNER */}
+      <motion.section
+        className="relative py-24 px-6 lg:px-20 overflow-hidden bg-gradient-to-br from-[#0a5c57] via-[#084844] to-[#052b29]"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUpVariant}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating Circles */}
+          <motion.div
+            className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full blur-2xl"
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -20, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
-
-          {/* Overlays */}
-          <div className="absolute inset-0 bg-[#0a5c57]/10 mix-blend-color pointer-events-none" />
-          <div className="absolute inset-0 bg-linear-to-t from-[#052b29]/20 to-transparent pointer-events-none" />
+          <motion.div
+            className="absolute bottom-20 right-20 w-40 h-40 bg-[#4ae0c7]/10 rounded-full blur-3xl"
+            animate={{
+              x: [0, -40, 0],
+              y: [0, 30, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 right-1/4 w-24 h-24 bg-white/5 rounded-full blur-xl"
+            animate={{
+              x: [0, 20, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {/* Decorative Icon */}
+            <motion.div
+              className="inline-block mb-6"
+              animate={{
+                rotate: [0, 5, -5, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Globe className="w-16 h-16 text-[#4ae0c7] mx-auto" />
+            </motion.div>
+
+            {/* Quote Marks */}
+            <motion.div
+              className="text-[#4ae0c7]/30 text-6xl font-serif mb-4"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              "
+            </motion.div>
+
+            {/* Main Text with Letter Animation */}
+            <motion.h2
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-8 px-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              Building a global healthcare network that delivers innovative cancer therapies to{" "}
+              <motion.span
+                className="text-[#4ae0c7] relative inline-block"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                every patient, everywhere
+                {/* Underline Animation */}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-full h-1 bg-[#4ae0c7]"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                />
+              </motion.span>
+              .
+            </motion.h2>
+
+            {/* Closing Quote */}
+            <motion.div
+              className="text-[#4ae0c7]/30 text-6xl font-serif mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              "
+            </motion.div>
+
+            {/* Subtitle */}
+            <motion.p
+              className="text-white/70 text-lg md:text-xl max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              Our commitment to transforming oncology care through accessibility, innovation, and compassion.
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Animated Bottom Border */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#4ae0c7] to-transparent"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8, duration: 1.2 }}
+        />
       </motion.section>
     </div>
   );
