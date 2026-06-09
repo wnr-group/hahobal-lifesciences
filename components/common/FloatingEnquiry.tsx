@@ -224,11 +224,9 @@ export default function FloatingEnquiry() {
                       className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] bg-white transition-all disabled:opacity-50 text-gray-900"
                     >
                       <option value="">Select inquiry type</option>
-                      <option value="Clinical Partnership">Clinical Partnership</option>
-                      <option value="Investor Relations">Investor Relations</option>
-                      <option value="Medical Affairs">Medical Affairs</option>
                       <option value="Career Information">Career Information</option>
                       <option value="General Inquiry">General Inquiry</option>
+                       <option value="Product Inquiry">Product Inquiry</option>
                     </select>
                   </div>
 
