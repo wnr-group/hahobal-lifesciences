@@ -234,7 +234,7 @@ const ResearchPriorities = () => (
 // Global Expension Map
 const GlobalExpansionMap = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [activeNode, setActiveNode] = useState('frankfurt');
+  const [activeNode, setActiveNode] = useState('srilanka');
   const [tooltip, setTooltip] = useState({
     visible: false, x: 0, y: 0, year: '', city: '', milestone: '', desc: ''
   });
@@ -265,16 +265,18 @@ const GlobalExpansionMap = () => {
       let pathOpacity = 0;
       
       const locations: any[] = [
-        { id: 'frankfurt', lat: 50.1, lon: 8.7, color: '#0f6e56', year: '2024', city: 'Frankfurt, Germany', milestone: 'EU Hub Activation', desc: 'Centralized logistics facility in Frankfurt for European distribution.', labelOffset: { x: 28, y: 18 } },
-        { id: 'singapore', lat: 1.35, lon: 103.82, color: '#0f6e56', year: '2025', city: 'Singapore', milestone: 'APAC R&D Center', desc: 'New genomic sequencing laboratory opening in Singapore.', labelOffset: { x: 0, y: -45 } },
-        { id: 'saopaulo', lat: -23.55, lon: -46.63, color: '#0f6e56', year: '2026', city: 'São Paulo, Brazil', milestone: 'LATAM Expansion', desc: 'Partnership with regional health networks for clinical Phase III trials.', labelOffset: { x: 0, y: -45 } },
-        { id: 'global', lat: 20, lon: 0, color: '#0f6e56', year: '2027', city: 'Global Scale', milestone: '40+ Countries', desc: 'Aiming for 40+ countries with active clinical access programs.', isSpecial: true } 
+        { id: 'srilanka', lat: 7.8731, lon: 80.7718, color: '#0f6e56', year: '2027-2028', city: 'Sri Lanka', desc: 'Strategic expansion in South Asian markets.', labelOffset: { x: 0, y: -45 } },
+        { id: 'singapore', lat: 1.35, lon: 103.82, color: '#0f6e56', year: '2027-2028', city: 'Singapore', desc: 'Southeast Asia operational hub.', labelOffset: { x: 0, y: -45 } },
+        { id: 'uae', lat: 24.4539, lon: 54.3773, color: '#0f6e56', year: '2029-2030', city: 'United Arab Emirates', desc: 'Middle East regional center.', labelOffset: { x: 0, y: -45 } },
+        { id: 'europe', lat: 50.8503, lon: 4.3517, color: '#0f6e56', year: '2031', city: 'Europe', desc: 'European network expansion.', labelOffset: { x: 0, y: -45 } }
       ];
 
       const paths = [
-        { from: locations[0], to: locations[1], progress: 0 },
-        { from: locations[0], to: locations[2], progress: 0.33 },
-        { from: locations[1], to: locations[2], progress: 0.66 }
+        { from: locations[0], to: locations[1], progress: 0 },        // Sri Lanka → Singapore
+        { from: locations[0], to: locations[2], progress: 0.2 },      // Sri Lanka → UAE
+        { from: locations[1], to: locations[2], progress: 0.4 },      // Singapore → UAE
+        { from: locations[2], to: locations[3], progress: 0.6 },      // UAE → Europe
+        { from: locations[1], to: locations[3], progress: 0.8 }       // Singapore → Europe
       ];
 
       let worldData: any = null;
@@ -290,8 +292,17 @@ const GlobalExpansionMap = () => {
       }
 
       function project(lat: number, lon: number, w: number, h: number) {
-        const x = (lon + 180) * (w / 360);
-        const y = (90 - lat) * (h / 180);
+        // Focus on Asia, Africa, Europe
+        const minLon = -20;
+        const maxLon = 150;
+        const minLat = -40;  // Southern Africa
+        const maxLat = 70;   // Northern Europe
+
+        const lonRange = maxLon - minLon;
+        const latRange = maxLat - minLat;
+
+        const x = ((lon - minLon) / lonRange) * w;
+        const y = ((maxLat - lat) / latRange) * h;
         return { x, y };
       }
 
@@ -402,17 +413,8 @@ const GlobalExpansionMap = () => {
 
         locations.forEach((loc) => {
           const p = project(loc.lat, loc.lon, w, h);
-          if (loc.isSpecial) {
-            ctx.save(); ctx.globalAlpha = pathOpacity;
-            const pulse = (Math.sin(Date.now() / 600) + 1) / 2;
-            ctx.beginPath(); ctx.setLineDash([4, 4]); ctx.strokeStyle = '#0f6e56'; ctx.lineWidth = 2; ctx.shadowBlur = 15; ctx.shadowColor = 'rgba(15, 110, 86, 0.25)';
-            ctx.arc(p.x, p.y, 20 + pulse * 12, 0, Math.PI * 2); ctx.stroke();
-            ctx.fillStyle = '#0f6e56'; ctx.font = 'bold 11px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.shadowBlur = 0; ctx.fillText("2027 · GLOBAL SCALE", p.x, p.y + 40);
-            ctx.restore();
-          } else {
-            drawPin(p.x, p.y, loc.color, pathOpacity);
-            drawFloatingLabel(p.x, p.y, loc.city, loc.labelOffset, pathOpacity);
-          }
+          drawPin(p.x, p.y, loc.color, pathOpacity);
+          drawFloatingLabel(p.x, p.y, loc.city, loc.labelOffset, pathOpacity);
         });
 
         // This will now work without throwing the ReferenceError
@@ -431,20 +433,21 @@ const GlobalExpansionMap = () => {
         
         locations.forEach(loc => {
           const p = project(loc.lat, loc.lon, w, h);
-          const py = loc.isSpecial ? p.y : p.y - 12;
+          const py = p.y - 12;
           if (Math.sqrt((mx-p.x)**2 + (my-py)**2) < 25) found = loc;
         });
 
         if (found) {
           setActiveNode(found.id);
-          const tooltipWidth = 240;
-          const left = Math.min(w - tooltipWidth - 20, Math.max(20, mx + 30 - tooltipWidth / 2));
-          
+          const isMobile = w < 768;
+          const tooltipWidth = isMobile ? 192 : 240;
+          const left = Math.min(w - tooltipWidth - 10, Math.max(10, mx + 20 - tooltipWidth / 2));
+
           setTooltip({
             visible: true, x: left, y: my + 24,
-            year: found.year || '', 
-            city: found.city || '', 
-            milestone: found.milestone || '', 
+            year: found.year || '',
+            city: found.city || '',
+            milestone: '',
             desc: found.desc || ''
           });
         } else {
@@ -466,10 +469,10 @@ const GlobalExpansionMap = () => {
   }, []);
 
   const roadmapPills = [
-    { id: 'frankfurt', year: '2024', city: 'Frankfurt, Germany', label: 'EU Hub Activation' },
-    { id: 'singapore', year: '2025', city: 'Singapore', label: 'APAC R&D Center' },
-    { id: 'saopaulo', year: '2026', city: 'São Paulo, Brazil', label: 'LATAM Expansion' },
-    { id: 'global', year: '2027', city: 'Global Scale', label: '40+ Countries' }
+    { id: 'srilanka', year: '2027-2028', city: 'Sri Lanka', label: 'South Asia' },
+    { id: 'singapore', year: '2027-2028', city: 'Singapore', label: 'Southeast Asia' },
+    { id: 'uae', year: '2029-2030', city: 'United Arab Emirates', label: 'Middle East' },
+    { id: 'europe', year: '2031', city: 'Europe', label: 'European Network' }
   ];
 
   return (
@@ -488,22 +491,21 @@ const GlobalExpansionMap = () => {
       </div>
 
       <div className="relative bg-white rounded-xl overflow-hidden shadow-sm mb-12 border border-[#e1e3e4] max-w-250 mx-auto">
-        <div className="relative w-full overflow-hidden" style={{ paddingTop: '51.5%', minHeight: '400px' }}>
+        <div className="relative w-full overflow-hidden" style={{ paddingTop: '56.25%', minHeight: '300px' }}>
           <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
           
-          <div 
-            className="absolute bg-white p-4 rounded-lg shadow-xl border-2 border-[#0f6e56] text-left w-60 z-50 pointer-events-none transition-all duration-200"
-            style={{ 
+          <div
+            className="absolute bg-white p-3 md:p-4 rounded-lg shadow-xl border-2 border-[#0f6e56] text-left w-48 md:w-60 z-50 pointer-events-none transition-all duration-200"
+            style={{
               opacity: tooltip.visible ? 1 : 0,
               transform: tooltip.visible ? 'translateY(0)' : 'translateY(8px)',
               left: `${tooltip.x}px`,
               top: `${tooltip.y}px`
             }}
           >
-            <div className="text-xs font-bold uppercase tracking-wider mb-1 text-[#0f6e56]">{tooltip.year}</div>
-            <div className="text-sm font-bold text-[#111827] mb-1">{tooltip.city}</div>
-            <div className="text-xs font-semibold text-slate-600 mb-2">{tooltip.milestone}</div>
-            <div className="text-xs text-slate-500 leading-relaxed">{tooltip.desc}</div>
+            <div className="text-[10px] md:text-xs font-bold uppercase tracking-wider mb-1 text-[#0f6e56]">{tooltip.year}</div>
+            <div className="text-xs md:text-sm font-bold text-[#111827] mb-2">{tooltip.city}</div>
+            <div className="text-[10px] md:text-xs text-slate-500 leading-relaxed">{tooltip.desc}</div>
           </div>
         </div>
 

@@ -172,7 +172,7 @@ export default function FloatingEnquiry() {
                       value={formData.name}
                       onChange={handleChange}
                       disabled={isSubmitting}
-                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all disabled:opacity-50"
+                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all disabled:opacity-50 text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
 
@@ -189,7 +189,7 @@ export default function FloatingEnquiry() {
                       value={formData.email}
                       onChange={handleChange}
                       disabled={isSubmitting}
-                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all disabled:opacity-50"
+                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all disabled:opacity-50 text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
 
@@ -206,7 +206,7 @@ export default function FloatingEnquiry() {
                       value={formData.phone}
                       onChange={handleChange}
                       disabled={isSubmitting}
-                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all disabled:opacity-50"
+                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all disabled:opacity-50 text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
 
@@ -221,7 +221,7 @@ export default function FloatingEnquiry() {
                       value={formData.inquiryType}
                       onChange={handleChange}
                       disabled={isSubmitting}
-                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] bg-white transition-all disabled:opacity-50"
+                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] bg-white transition-all disabled:opacity-50 text-gray-900"
                     >
                       <option value="">Select inquiry type</option>
                       <option value="Clinical Partnership">Clinical Partnership</option>
@@ -245,7 +245,7 @@ export default function FloatingEnquiry() {
                       value={formData.message}
                       onChange={handleChange}
                       disabled={isSubmitting}
-                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all resize-none disabled:opacity-50"
+                      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a5c57] focus:border-[#0a5c57] transition-all resize-none disabled:opacity-50 text-gray-900 placeholder:text-gray-400"
                     />
                   </div>
 
