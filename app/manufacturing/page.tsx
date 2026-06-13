@@ -199,37 +199,6 @@ const QualityAssurance = () => (
   </motion.section>
 );
 
-const ResearchPriorities = () => (
-  <motion.section 
-    className="py-20 max-w-7xl mx-auto px-6 md:px-12"
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.3 }}
-    variants={fadeUpVariant}
-  >
-    <h2 className="text-3xl lg:text-4xl font-bold text-[#000d21] mb-12">Current Research Priorities</h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div className="group border-l-4 border-[#006a63] p-8 bg-white shadow-sm hover:shadow-md hover:bg-[#90f4e8]/10 transition-all duration-300 rounded-r-xl">
-        <h5 className="text-xl font-bold text-[#000d21] mb-3">T-Cell Engineering</h5>
-        <p className="text-base text-[#44474d] leading-relaxed">
-          Advancing chimeric antigen receptor (CAR) T-cell therapies for refractory hematologic malignancies.
-        </p>
-      </div>
-      <div className="group border-l-4 border-[#006a63] p-8 bg-white shadow-sm hover:shadow-md hover:bg-[#90f4e8]/10 transition-all duration-300 rounded-r-xl">
-        <h5 className="text-xl font-bold text-[#000d21] mb-3">Precision Biomarkers</h5>
-        <p className="text-base text-[#44474d] leading-relaxed">
-          Developing companion diagnostics to predict patient response to targeted biological agents.
-        </p>
-      </div>
-      <div className="group border-l-4 border-[#006a63] p-8 bg-white shadow-sm hover:shadow-md hover:bg-[#90f4e8]/10 transition-all duration-300 rounded-r-xl">
-        <h5 className="text-xl font-bold text-[#000d21] mb-3">Nano-drug Carriers</h5>
-        <p className="text-base text-[#44474d] leading-relaxed">
-          Optimizing lipid nanoparticle delivery systems for enhanced penetration into solid tumor tissues.
-        </p>
-      </div>
-    </div>
-  </motion.section>
-);
 
 // Global Expension Map
 const GlobalExpansionMap = () => {
@@ -746,7 +715,6 @@ export default function ManufacturingPage() {
       <Hero />
       <ManufacturingExcellence />
       <QualityAssurance />
-      <ResearchPriorities />
       <GlobalExpansionMap/>
       <GlobalExpansionTimeline />
     </main>
