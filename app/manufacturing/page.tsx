@@ -82,7 +82,7 @@ const Hero = () => (
           className="text-lg text-white/80 mb-8 max-w-2xl leading-relaxed"
           variants={heroItemVariant}
         >
-          Pioneering next-generation oncology therapeutics through a vertically integrated ecosystem of WHO-GMP certified facilities and rigorous research protocols.
+          Hahobal redefines oncology therapeutics through an asset-light model. By orchestrating a global network of elite, WHO-GMP certified Contract Manufacturing Organizations (CMOs), we focus on what matters most: delivering life-saving science at scale without the constraints of legacy infrastructure.
         </motion.p>
       </div>
     </motion.div>
@@ -116,7 +116,7 @@ const ManufacturingExcellence = () => (
         </div>
         <h3 className="text-2xl font-bold text-[#000d21] mb-3 px-4">Automated Sterile Formulation</h3>
         <p className="text-base text-[#44474d] px-4 pb-4">
-          Our state-of-the-art facility utilizes closed-loop robotic systems for the production of lyophilized injectables, ensuring zero-contamination environments for oncology treatments.
+          We collaborate exclusively with top-tier CMOs equipped with closed-loop robotic systems and automated sterile formulation lines. This ensures zero-contamination environments for our highly sensitive oncology portfolio across partner facilities.
         </p>
       </div>
 
@@ -125,7 +125,7 @@ const ManufacturingExcellence = () => (
         <p className="text-sm font-semibold uppercase tracking-widest text-[#006a63]">Batch Reliability</p>
         <div className="mt-8 pt-8 border-t border-[#006a63]/20">
           <p className="text-base italic text-[#006a63] font-medium leading-relaxed">
-            &quot;Precision at scale is the foundation of patient safety.&quot;
+            &quot;Strategic outsourcing is the catalyst for uncompromised patient safety and rapid, global scalability.&quot;
           </p>
         </div>
       </div>
@@ -134,7 +134,7 @@ const ManufacturingExcellence = () => (
         <Wind className="text-[#006a63] w-8 h-8 mb-5" />
         <h4 className="text-xl font-bold text-[#000d21] mb-3">Air Quality Control</h4>
         <p className="text-[#44474d] leading-relaxed">
-          Class 100 HEPA filtration systems maintaining ISO 5 standards across all critical processing zones.
+          Our partner facilities are strictly mandated to maintain Class 100 HEPA filtration and ISO 5 standards across all critical processing zones.
         </p>
       </div>
 
@@ -142,7 +142,7 @@ const ManufacturingExcellence = () => (
         <FlaskConical className="text-[#006a63] w-8 h-8 mb-5" />
         <h4 className="text-xl font-bold text-[#000d21] mb-3">API Synthesis</h4>
         <p className="text-[#44474d] leading-relaxed">
-          In-house synthesis of high-potency active pharmaceutical ingredients to ensure supply chain resilience.
+          Leveraging specialized global alliances to source the highest purity active pharmaceutical ingredients, eliminating supply chain bottlenecks.
         </p>
       </div>
 
@@ -150,7 +150,7 @@ const ManufacturingExcellence = () => (
         <Snowflake className="text-[#006a63] w-8 h-8 mb-5" />
         <h4 className="text-xl font-bold text-[#000d21] mb-3">Cold Chain Logistics</h4>
         <p className="text-[#44474d] leading-relaxed">
-          IoT-monitored -80°C storage capabilities ensuring biological integrity from lab to patient.
+          End-to-end, IoT-monitored -80°C storage managed by elite logistics partners, ensuring molecule integrity directly from the CMO to the clinic.
         </p>
       </div>
     </div>
@@ -169,21 +169,21 @@ const QualityAssurance = () => (
       <div className="w-full md:w-1/2">
         <h2 className="text-3xl lg:text-4xl font-bold text-[#000d21] mb-6">Rigorous Quality Assurance</h2>
         <p className="text-lg text-[#44474d] mb-8 leading-relaxed">
-          Our QA framework exceeds international regulatory standards, employing a three-tier validation process for every molecule produced.
+          We may not own the facilities, but we own the quality. Our independent QA framework dictates absolute compliance, employing real-time digital auditing and batch-by-batch validation for every outsourced product.
         </p>
         <ul className="space-y-6">
           <li className="flex items-start gap-4">
             <CheckCircle2 className="text-[#006a63] w-6 h-6 shrink-0 mt-0.5" />
             <div>
               <span className="text-sm font-bold text-[#000d21] block mb-1">Real-time Analytical Monitoring</span>
-              <span className="text-base text-[#44474d]">HPLC and Mass Spectrometry during synthesis.</span>
+              <span className="text-base text-[#44474d]">Mandatory third-party HPLC and Mass Spectrometry validation for every outsourced batch.</span>
             </div>
           </li>
           <li className="flex items-start gap-4">
             <CheckCircle2 className="text-[#006a63] w-6 h-6 shrink-0 mt-0.5" />
             <div>
               <span className="text-sm font-bold text-[#000d21] block mb-1">LIMS Integration</span>
-              <span className="text-base text-[#44474d]">Fully digital Laboratory Information Management Systems.</span>
+              <span className="text-base text-[#44474d]">Real-time data synchronization between our headquarters and partner CMOs for total operational transparency.</span>
             </div>
           </li>
         </ul>
@@ -194,6 +194,38 @@ const QualityAssurance = () => (
           className="w-full h-100 object-cover group-hover:scale-105 transition-transform duration-700" 
           src="manufacture-quality-image.png"
         />
+      </div>
+    </div>
+  </motion.section>
+);
+
+const ResearchPriorities = () => (
+  <motion.section 
+    className="py-20 max-w-7xl mx-auto px-6 md:px-12"
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.3 }}
+    variants={fadeUpVariant}
+  >
+    <h2 className="text-3xl lg:text-4xl font-bold text-[#000d21] mb-12">Future Research Priorities</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="group border-l-4 border-[#006a63] p-8 bg-white shadow-sm hover:shadow-md hover:bg-[#90f4e8]/10 transition-all duration-300 rounded-r-xl">
+        <h5 className="text-xl font-bold text-[#000d21] mb-3">T-Cell Engineering</h5>
+        <p className="text-base text-[#44474d] leading-relaxed">
+          Co-developing advanced chimeric antigen receptor (CAR) T-cell therapies with leading clinical research organizations.
+        </p>
+      </div>
+      <div className="group border-l-4 border-[#006a63] p-8 bg-white shadow-sm hover:shadow-md hover:bg-[#90f4e8]/10 transition-all duration-300 rounded-r-xl">
+        <h5 className="text-xl font-bold text-[#000d21] mb-3">Precision Biomarkers</h5>
+        <p className="text-base text-[#44474d] leading-relaxed">
+          Funding third-party diagnostic pioneers to predict patient response to targeted biological agents effectively.
+        </p>
+      </div>
+      <div className="group border-l-4 border-[#006a63] p-8 bg-white shadow-sm hover:shadow-md hover:bg-[#90f4e8]/10 transition-all duration-300 rounded-r-xl">
+        <h5 className="text-xl font-bold text-[#000d21] mb-3">Nano-drug Carriers</h5>
+        <p className="text-base text-[#44474d] leading-relaxed">
+          Partnering with specialized nanomaterial labs to optimize lipid nanoparticle delivery systems for solid tumor penetration.
+        </p>
       </div>
     </div>
   </motion.section>
@@ -715,6 +747,7 @@ export default function ManufacturingPage() {
       <Hero />
       <ManufacturingExcellence />
       <QualityAssurance />
+      <ResearchPriorities/>
       <GlobalExpansionMap/>
       <GlobalExpansionTimeline />
     </main>
